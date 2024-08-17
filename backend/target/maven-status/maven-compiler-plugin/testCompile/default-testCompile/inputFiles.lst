@@ -1,0 +1,8 @@
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/controllers/ProductFilterByStoreControllerTest.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/controllers/ProductGeneralControllerTest.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/controllers/StoreControllerTest.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/ecommerceportfolio/EcommerceportfolioApplicationTests.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/repositories/ProductRepositoryTest.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/repositories/StoreRepositoryTest.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/services/ProductServiceTest.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/test/java/com/ecommerceportfolio/services/StoreServiceTest.java

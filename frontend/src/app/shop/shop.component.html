@@ -1,0 +1,42 @@
+<div class="pb-4">
+  @if(orderConfirmModal){
+    <app-order-confirm-modal (onClickCrossButtonEvent)="changeIsConfirmModalVisible($event)"/>
+  }
+  <app-shop-cart [cart]="cartShopList" (quantityChangeEvent)="changeQuantityInCartShop($event)" [cartListVisible]="cartListVisible" (onClickCrossButtonEvent)="changeIsCartVisible($event)" (onClickCrossButtonConfirmModalEvent)="changeIsConfirmModalVisible($event)"/>
+  
+  <app-shop-header
+    [listOfStores]="listOfStores"
+    [selectedStore]="shopSelected"
+    [textFilterShop]="shopTextFilter"
+    [textFilterProduct]="productTextFilter"
+    (confirmButtonEvent)="changeSelectedStore($event)"
+    (onSubmitSearchBarProductsEvent)="changeProductTextFilter($event)"
+    (onSubmitSearchBarStoresEvent)="changeTextFilterStores($event)"
+    (onClickCartButtonEvent)="changeIsCartVisible($event)"
+  />
+  <div class="block sm:hidden ml-[5%] w-[188px] mb-4">
+    <app-shop-selector-input
+      [listOfStores]="listOfStores"
+      [selectedStore]="shopSelected"
+      [shopTextFilter]="shopTextFilter"
+      (confirmButtonEvent)="changeSelectedStore($event)"
+      (onSubmitSearchBarStoresEvent)="onSubmitSearchBarStoresFunction($event)"
+    />
+  </div>
+  <div class="mb-4">
+    <!---->
+    <app-shop-category-list
+      (clickInCategoryItemEvent)="changeCategoriesFilters($event)" 
+    />
+  </div>
+
+  <app-shop-product-list
+    [products]="products"
+    [totalPages]="totalPages"
+    [currentPage]="currentPage"
+    [isLoading]="isLoading"
+    [cartShopList]="cartShopList"
+    (quantityChangeEvent)="changeQuantityInCartShop($event)"
+    (changePageEvent)="changePageFunction($event)"
+  />
+</div>

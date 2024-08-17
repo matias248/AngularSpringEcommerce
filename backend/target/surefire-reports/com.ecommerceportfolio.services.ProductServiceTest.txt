@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.ecommerceportfolio.services.ProductServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.737 s <<< FAILURE! -- in com.ecommerceportfolio.services.ProductServiceTest
+com.ecommerceportfolio.services.ProductServiceTest.testUpdateProduct -- Time elapsed: 0.187 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.ecommerceportfolio.entities.Product.getId()" because "productResponse" is null
+	at com.ecommerceportfolio.services.ProductServiceTest.testUpdateProduct(ProductServiceTest.java:63)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

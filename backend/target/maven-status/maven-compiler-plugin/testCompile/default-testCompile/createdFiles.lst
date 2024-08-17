@@ -1,0 +1,8 @@
+com/ecommerceportfolio/repositories/ProductRepositoryTest.class
+com/ecommerceportfolio/repositories/StoreRepositoryTest.class
+com/ecommerceportfolio/controllers/ProductGeneralControllerTest.class
+com/ecommerceportfolio/controllers/StoreControllerTest.class
+com/ecommerceportfolio/ecommerceportfolio/EcommerceportfolioApplicationTests.class
+com/ecommerceportfolio/services/ProductServiceTest.class
+com/ecommerceportfolio/services/StoreServiceTest.class
+com/ecommerceportfolio/controllers/ProductFilterByStoreControllerTest.class

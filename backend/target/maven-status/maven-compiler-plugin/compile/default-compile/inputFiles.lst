@@ -1,0 +1,14 @@
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/EcommerceportfolioApplication.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/controllers/ProductFilterByStoreController.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/controllers/ProductGeneralController.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/controllers/StoreController.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/controllers/dto/ProductClient.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/controllers/dto/ProductListClient.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/entities/Address.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/entities/Location.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/entities/Product.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/entities/Store.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/repositories/ProductRepository.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/repositories/StoreRepository.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/services/ProductService.java
+/home/neos/Escritorio/proyectos_personales/angularSpringEcommercePortfolio/backend/src/main/java/com/ecommerceportfolio/services/StoreService.java

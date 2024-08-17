@@ -1,0 +1,57 @@
+
+### Get all products
+GET http://localhost:8080/products
+
+### Get all products with pagination
+GET http://localhost:8080/products/public
+
+### Get all products with store filter
+GET http://localhost:8080/products/public?categories=ax,Accessories&textfilter=Bamboo
+
+### Get all products with store filter
+GET http://localhost:8080/products/public?textfilter=B
+
+### Get all products paginated
+GET http://localhost:8080/products/public
+####
+GET http://localhost:8080/products?page=0
+
+### Get products by id
+GET http://localhost:8080/products/1
+
+### Create a product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+			"name": "a Watch",
+			"description": "Product Description",
+			"imageUrl": "bamboo-watch.jpg",
+			"price": 65,
+			"category": "Accessories",
+			"quantity": 24,
+			"inventoryStatus": "OUTOFSTOCK",
+			"rating": 5,
+			"currency":"€",
+			"storeId":1
+}
+
+### Update a product
+PUT  http://localhost:8080/products/1
+Content-Type: application/json
+
+{
+    "name":"name changed",
+	"price":89
+}
+
+### Delete a product
+DELETE http://localhost:8080/products/1
+
+### Get product and store by store 
+GET http://localhost:8080/stores/1/products
+
+### Get product and store by id
+GET http://localhost:8080/stores/1/products/1
+
+

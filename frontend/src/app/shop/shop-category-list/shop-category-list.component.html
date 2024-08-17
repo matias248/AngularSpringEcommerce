@@ -1,0 +1,11 @@
+@if(filterCategoryEntries){
+    <div id="categoryListContainer" class="max-w-[1200px] mx-auto w-[90%] rounded-lg">
+    <div id="categoryListTitle" class="dark:text-white text-lg">{{title}}</div>
+    <div id="categoryList" class="flex gap-1 flex-wrap">
+        @for(entry of filterCategoryEntries; track entry; let i =$index){
+            <app-shop-category-item [category]="entry[0]" [filterOn]="entry[1]" [id]="i" (clickButtonEvent)="categoryChangeValue($event)"/>
+        }
+      
+    </div>
+</div>
+}

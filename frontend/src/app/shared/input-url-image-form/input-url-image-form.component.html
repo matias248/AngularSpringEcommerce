@@ -1,0 +1,32 @@
+<div class="mb-5">
+  <div
+    class="w-24 h-24 mb-2 bg-white border border-slate-400 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto sm:mx-0"
+  >
+    @if(inputFormProps.formControl.value){
+    <img
+      class="mt-5 h-16 max-w-full rounded-lg object-cover mx-auto text-center dark:text-white"
+      src="{{ inputFormProps.formControl.value }}"
+      alt="error loading image"
+    />
+    } @else{
+    <app-no-image-set />
+    }
+  </div>
+  <label
+    htmlFor="{{ 'inputImageUrl-' + inputFormProps.title }}"
+    class="block mb-2 text-lg font-medium dark:text-white flex items-center"
+  >
+    {{ inputFormProps.title + (inputFormProps.required ? "*" : "") }}
+  </label>
+  <textarea
+    id="{{ 'inputImageUrl-' + inputFormProps.title }}"
+    rows="{{ 1 }}"
+    [formControl]="inputFormProps.formControl"
+    class="{{
+      'bg-gray-50 border border-slate-400 text-gray-900 text-base rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ' +
+        ' ' +
+        (inputFormProps.styleOverride ?? '')
+    }}"
+    required="{{ inputFormProps.required }}"
+  ></textarea>
+</div>

@@ -1,0 +1,24 @@
+<div class="mx-auto max-w-[1600px] mx-auto w-[90%]">
+  <div class="text-4xl text-center mb-8 dark:text-white">{{ title }}</div>
+  @if( !isLoading && paginatedProductsWithStore ) {
+
+  <div
+    *ngIf="
+      paginatedProductsWithStore !== undefined &&
+      paginatedProductsWithStore?.productListDTO !== undefined
+    "
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-y-4 gap-y-6 pb-4 md:justify-items-center"
+  >
+    <app-product-item
+      *ngFor="let product of paginatedProductsWithStore.productListDTO.products"
+      [product]="product"
+    />
+    <app-create-item-button [buttonProps]="createNewItemProps" />
+  </div>
+  }
+</div>
+@if( !isLoading && paginatedProductsWithStore ){
+<app-display-not-found />
+} @if( isLoading ){
+<div className="flex justify-center"><app-spinner /></div>
+}

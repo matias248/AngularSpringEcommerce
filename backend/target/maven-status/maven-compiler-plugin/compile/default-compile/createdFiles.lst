@@ -1,0 +1,14 @@
+com/ecommerceportfolio/controllers/dto/ProductListClient.class
+com/ecommerceportfolio/controllers/ProductFilterByStoreController.class
+com/ecommerceportfolio/controllers/StoreController.class
+com/ecommerceportfolio/services/StoreService.class
+com/ecommerceportfolio/controllers/ProductGeneralController.class
+com/ecommerceportfolio/entities/Product.class
+com/ecommerceportfolio/services/ProductService.class
+com/ecommerceportfolio/controllers/dto/ProductClient.class
+com/ecommerceportfolio/repositories/ProductRepository.class
+com/ecommerceportfolio/entities/Location.class
+com/ecommerceportfolio/entities/Store.class
+com/ecommerceportfolio/entities/Address.class
+com/ecommerceportfolio/EcommerceportfolioApplication.class
+com/ecommerceportfolio/repositories/StoreRepository.class

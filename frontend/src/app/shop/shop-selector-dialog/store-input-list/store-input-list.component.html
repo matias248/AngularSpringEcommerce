@@ -1,0 +1,6 @@
+<div class="flex flex-col gap-1 overflow-auto">
+  @for (store of listOfStores; track store; let i = $index) {
+    <app-store-input [store]="store" [idStoreSelected]="temporalStore ? temporalStore.id : undefined" 
+    (elementWasClicked)="elementWasClickedFunction($event)" />
+  }
+</div>

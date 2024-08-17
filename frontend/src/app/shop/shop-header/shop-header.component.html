@@ -1,0 +1,68 @@
+<header class="h-[64px] mb-4 sm:mb-8">
+  <div
+    class="bg-slate-100 border-gray-200 dark:bg-gray-800 max-w-[1000px] mx-auto w-[90%] rounded-lg"
+  >
+    <div class="flex items-center max-w-full gap-[4px] justify-between mx-2">
+      <div class="hidden sm:block"><app-shop-selector-input 
+        [listOfStores]="listOfStores" 
+        [selectedStore]="selectedStore" 
+        [shopTextFilter]="textFilterShop"
+        (confirmButtonEvent)="confirmButtonFunction($event)"
+        (onSubmitSearchBarStoresEvent)="onSubmitSearchBarStoresFunction($event)"
+        /></div>
+      
+      <div class="flex-1">
+        <app-search-bar id="filterproducts" 
+        [textFilter]="textFilterProduct" [textHover]=""  (onSubmitEvent)="onSubmitSearchBarProductsFunction($event)"/>
+      </div>
+
+      <div class="flex items-center lg:order-2">
+        <button
+          id="shoppingCart"
+          class="relative bg-blue-600 hover:bg-blue-700 rounded-full p-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none"
+          (click)="onClickCartButtonFunction(true)"
+        >
+          <div class="size-6"><app-shop-icon/></div>
+          @if(numberOfElementsInCartShop != 0 && numberOfElementsInCartShop !=
+          undefined){
+          <div
+            class="{{'absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full my-auto text-center flex items-center justify-center overflow-hidden '
+                        + (numberOfElementsInCartShop > 9 ? 'size-6 '' : 'size-5 ')}}"
+          >
+            <div>
+              @if(numberOfElementsInCartShop > 99){ +99 } @else{
+              {{ numberOfElementsInCartShop }}
+              }
+            </div>
+          </div>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--
+    <AnimatePresence>
+        {!isVisible &&
+            <div
+                class="fixed w-[100%] top-4"
+            >
+                <div class=" mx-auto max-w-[1000px]  w-[90%] flex flex-row-reverse px-2 py-1">
+
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                        id="shoppingCartFixed" onClick={() => props.handlerCartListVisble(true)} class="relative bg-blue-600 hover:bg-blue-700 rounded-full p-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none ">
+                        <div class="size-6 "><ShoppingCartIcon /></div>
+                        {(props.numberOfElementsInCartShop != 0 && props.numberOfElementsInCartShop != undefined) && <div class={"absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full my-auto text-center flex items-center justify-center overflow-hidden "
+                            + (props.numberOfElementsInCartShop > 9 ? "size-6 " : "size-5")}>
+                            <div>{props.numberOfElementsInCartShop > 99 ? "+99" : props.numberOfElementsInCartShop}</div>
+                        </div>}
+                    </motion.button>
+                </div>
+            </div>
+        }
+    </AnimatePresence>
+    -->
+</header>

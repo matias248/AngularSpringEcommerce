@@ -1,0 +1,78 @@
+<div>
+  <div class="mb-6 text-4xl text-center mb-16 dark:text-white">{{ title }}</div>
+  @if(productWithStore !== undefined && productWithStore.product !== undefined
+  && productWithStore.store !== undefined && !isLoading ){
+  <div class="max-w-[1000px] mx-auto w-[90%] rounded-lg">
+    <div class="text-3xl text-center mb-1 dark:text-white flex justify-end">
+      <button
+        id="gotoEditButton"
+        class="max-h-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-auto px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        [routerLink]="[
+          '/stores',
+          productWithStore.store.id,
+          'products',
+          productWithStore.product.id,
+          'edit'
+        ]"
+      >
+        Go to Edit
+      </button>
+    </div>
+
+    <ul
+      class="space-y-2 bg-slate-100 border-gray-200 dark:bg-gray-800 dark:text-white rounded-lg"
+    >
+      @for (key of objectKeys(productWithStore.product); track key; let i =
+      $index) { @if(!['address','location'].includes(key) ){
+      <li
+        id="{{ 'displayProductElement' + i }}"
+        class="flex justify-between border rounded-lg shadow bg-slate-400 dark:bg-gray-500 dark:border-gray-700 gap-2 margin-top-2"
+      >
+        <div
+          id="{{ 'displayProductElement' + i + 'key' }}"
+          class="bg-slate-300 dark:bg-gray-600 rounded-l-lg px-1 w-1/2 overflow-y-auto"
+        >
+          {{ key | capitalizeAndFormat }}
+        </div>
+        <div
+          id="{{ 'displayProductElement' + i + 'value' }}"
+          class="bg-slate-300 dark:bg-gray-600 rounded-r-lg px-1 w-1/2 overflow-y-auto text-start"
+        >
+          {{ getAttributeValue(productWithStore.product, key) }}
+        </div>
+      </li>
+      } @else { @for (key2 of
+      objectKeys(getAttributeValue(productWithStore.product, key)); track key2;
+      let j = $index){
+      <li
+        id="{{ 'displayProductElement' + i + '-' + j }}"
+        class="flex justify-between border rounded-lg shadow bg-slate-400 dark:bg-gray-500 dark:border-gray-700 gap-2 margin-top-2"
+      >
+        <div
+          id="{{ 'displayProductElement' + i + '-' + j + 'key' }}"
+          class="bg-slate-300 dark:bg-gray-600 rounded-l-lg px-1 w-1/2 overflow-y-auto"
+        >
+          {{ key2 | capitalizeAndFormat }}
+        </div>
+        <div
+          id="{{ 'displayProductElement' + i + '-' + j + 'value' }}"
+          class="bg-slate-300 dark:bg-gray-600 rounded-r-lg px-1 w-1/2 overflow-y-auto text-start"
+        >
+          {{
+            getAttributeValue(
+              getAttributeValue(productWithStore.product, key),
+              key2
+            )
+          }}
+        </div>
+      </li>
+      } } }
+    </ul>
+  </div>
+  } @if( !isLoading && productWithStore === undefined ){
+  <app-display-not-found />
+  } 
+  @if( isLoading ){
+  <div className="flex justify-center"><app-spinner /></div>
+  }
+</div>

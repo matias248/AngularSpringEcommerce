@@ -1,0 +1,79 @@
+@if(cartItem){
+<div
+  id="{{ 'ShopProductElementGallery' + cartItem.id }}"
+  class="h-[18.75rem] min-w-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+>
+  @if(!showDescription){
+  <div
+    id="{{ 'ShopImageProductGallery' + cartItem.id }}"
+    class="w-56 mt-[0.5rem] mx-auto h-[7rem]"
+  >
+    @if(cartItem.imageUrl){
+    <img
+      class="h-[7rem] max-w-full rounded-lg object-cover mx-auto text-center dark:text-white"
+      src="{{ cartItem.imageUrl }}"
+      alt="error loading image"
+    />
+    } @if(!cartItem.imageUrl){
+    <div
+      id="{{ 'divNoImageSet' + cartItem.id }}"
+      class="h-[7rem] max-w-full rounded-lg"
+    >
+      <app-no-image-set />
+    </div>
+    }
+  </div>
+  <div
+    id="{{ 'textShopProductGallery' + cartItem.id }}"
+    class="mt-[0.5rem] max-w-full h-[6rem] mx-1 text-center overflow-auto"
+  >
+    <div id="{{ '1textShopProductGallery' + cartItem.id }}" class="w-full">
+      <div
+        class="text-2xl font-bold text-gray-900 dark:text-white leading-8 whitespace-nowrap"
+      >
+        {{ cartItem.name }}
+      </div>
+    </div>
+    <div class="w-full">
+      <p
+        id="{{ '1textShopProductGallery' + cartItem.id }}"
+        class="text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap leading-8"
+      >
+        {{ cartItem.price + cartItem.currency }}
+      </p>
+    </div>
+    <div class="flex flex-row-reverse items-center max-[1040px]:justify-center">
+      <button
+        id="{{ 'learnMore' + cartItem.id }}"
+        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-auto px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        (click)="setShowDescription(true)"
+      >
+        Learn more
+      </button>
+    </div>
+  </div>
+  <div>
+    <div class="h-[4rem] flex justify-center items-center rounded-lg">
+      <app-minus-plus-input
+        [initialValue]="cartItem.quantity"
+        [id]="'minusPlusProductItem' + cartItem.id"
+        (valueChange)="quantityChangeFunction($event)"
+      />
+    </div>
+  </div>
+  } @if(showDescription){
+  <div
+    id="{{ 'descriptionProductCrossIcon' + cartItem.id }}"
+    class="size-[3rem]"
+  >
+    <app-cross-icon class="dark:fill-white" (click)="setShowDescription(false)"/>
+  </div>
+  <div
+    id="{{ 'descriptionProductText' + cartItem.id }}"
+    class="dark:text-white overflow-y-auto h-[15.25rem] mx-1"
+  >
+    {{ cartItem.description }}
+  </div>
+  }
+</div>
+}

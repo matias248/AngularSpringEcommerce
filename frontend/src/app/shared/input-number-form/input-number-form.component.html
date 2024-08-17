@@ -1,0 +1,28 @@
+<div class="mb-5 w-full min-w-[100px]">
+  <label
+    htmlFor="{{ 'inputNumber-' + inputFormProps.title }}"
+    class="block mb-2 text-base sm:text-lg font-medium dark:text-white flex items-center"
+  >
+    {{ inputFormProps.title + (inputFormProps.required ? "*" : "") }}
+  </label>
+  <input
+    type="text"
+    id="{{ 'inputNumber-' + inputFormProps.title }}"
+    class="{{
+      'bg-gray-50  border border-slate-400 text-gray-900 text-base rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+    dark:placeholder-gray-400 dark:text-white ' +
+        (inputFormProps.formControl.invalid &&
+        (inputFormProps.formControl.touched || inputFormProps.formControl.dirty)
+          ? 'bg-red-200 dark:bg-red-800'
+          : '')
+    }}"
+    [formControl]="inputFormProps.formControl"
+    required="{{ inputFormProps.required }}"
+  />
+  @if( inputFormProps.helpText && (inputFormProps.formControl.invalid &&
+  (inputFormProps.formControl.touched || inputFormProps.formControl.dirty ))){
+  <div class="text-xs dark:text-white italic overflow-hidden">
+    {{ inputFormProps.helpText }}
+  </div>
+  }
+</div>

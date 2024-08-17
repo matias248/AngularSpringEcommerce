@@ -1,0 +1,15 @@
+<div class="mx-auto max-w-[1600px] mx-auto w-[90%]">
+  <div class="text-4xl text-center mb-8 dark:text-white">{{ title }}</div>
+  @if( !isLoading && stores ){
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-y-4 gap-y-6 pb-4 md:justify-items-center"
+  >
+    <app-store-item *ngFor="let store of stores" [store]="store" />
+    <app-create-item-button [buttonProps]="createNewItemProps" />
+  </div>
+  } @if( !isLoading && stores==undefined ){
+  <app-display-not-found />
+  } @if( isLoading ){
+  <div className="flex justify-center"><app-spinner /></div>
+  }
+</div>

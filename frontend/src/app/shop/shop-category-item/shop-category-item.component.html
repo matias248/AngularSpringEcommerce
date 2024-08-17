@@ -1,0 +1,19 @@
+@if(category!=undefined &&  id!=undefined){
+<div
+  id="{{ 'ShopCategoryItem' + id }}"
+  class="{{
+    'dark:text-white rounded-lg px-2 flex ' +
+      (filterOn ? 'bg-blue-500' : 'bg-gray-500')
+  }}"
+  (click)="clickButtonFunction(id)"
+>
+  @if(!filterOn){
+  <div class="dark:fill-white size-[20px] self-center"><app-cross-icon /></div>
+
+  } @if(filterOn){
+  <div class="dark:fill-white size-[20px] self-center"><app-verif-icon /></div>
+
+  }
+  <div>{{ category }}</div>
+</div>
+}

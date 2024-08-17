@@ -1,0 +1,54 @@
+@if(cartItem){<div
+  id="{{ 'ShopCartItem' + cartItem.id }}"
+  class="h-[13.75rem] w-full min-w-128 md:min-w-56 bg-white rounded-lg shadow dark:bg-gray-800 p-1"
+>
+  <div
+    id="{{ 'ShopCartItemImage' + cartItem.id }}"
+    class="size-[4.5rem] mt-[0.5rem] mx-auto"
+  >
+    @if(cartItem.imageUrl){
+    <img
+      class="h-full max-w-full rounded-lg object-cover mx-auto text-center dark:text-white"
+      src="{{ cartItem.imageUrl }}"
+      alt="error loading image"
+    />
+    } @if(!cartItem.imageUrl){
+    <div
+      id="{{ 'divNoImageSet' + cartItem.id }}"
+      class="h-full max-w-full rounded-lg"
+    >
+      <app-no-image-set />
+    </div>
+    }
+  </div>
+  <div
+    id="{{ 'textShopCart' + cartItem.id }}"
+    class="mt-[0.5rem] max-w-full h-[3.5rem] mx-1 text-center overflow-auto"
+  >
+    <div id="{{ '1textShopCartItem' + cartItem.id }}" class="w-full">
+      <div
+        class="text-xl font-bold text-gray-900 dark:text-white leading-7 whitespace-nowrap"
+      >
+        {{ cartItem.name }}
+      </div>
+    </div>
+    <div class="w-full">
+      <p
+        id="{{ '2textShopCartItem' + cartItem.id }}"
+        class="text-xl font-bold text-gray-900 dark:text-white whitespace-nowrap leading-7"
+      >
+        {{ cartItem.price + "€" }}
+      </p>
+    </div>
+  </div>
+  <div>
+    <div class="h-[4rem] flex justify-center items-center rounded-lg">
+      <app-minus-plus-input
+        [initialValue]="cartItem.quantity"
+        [id]="'minusPlusCartItem' + cartItem.id"
+        (valueChange)="quantityChangeFunction($event)"
+      />
+    </div>
+  </div>
+</div>
+}
