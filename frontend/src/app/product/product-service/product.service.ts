@@ -7,7 +7,7 @@ import { ApiProductService } from './productInterface';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService implements ApiProductService{
+export class ProductService implements ApiProductService {
   private apiUrl = 'http://localhost:8080/products';
 
   constructor(private http: HttpClient) { }
@@ -17,7 +17,8 @@ export class ProductService implements ApiProductService{
   }
 
   getProductsPublic(categories: string[], pageIndex: number, elementsPerPage: number, textFilter: string, storeId?: number): Observable<ProductListDTO> {
-    const url = `${this.apiUrl}/public?categories=${categories}&page=${pageIndex}&pagelength=${elementsPerPage}&textfilter=${textFilter}${storeId ? "&storeid="+storeId : ""}`;
+    console.log("" + categories+"j" + pageIndex +"a"+ elementsPerPage + textFilter)
+    const url = `${this.apiUrl}/public?categories=${categories}&page=${pageIndex}&pagelength=${elementsPerPage}&textfilter=${textFilter}${storeId ? "&storeid=" + storeId : ""}`;
     return this.http.get<ProductListDTO>(url);
   }
 

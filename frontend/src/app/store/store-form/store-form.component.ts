@@ -28,7 +28,7 @@ import { SpinnerComponent } from '../../svg/spinner/spinner.component';
   selector: 'app-store-form',
   standalone: true,
   imports: [ReactiveFormsModule, InputNumberFormComponent, FormDirective,
-    InputStringFormComponent, InputSwitchFormComponent, ValidateButtonComponent, CancelButtonComponent, DeleteButtonComponent, InputUrlImageFormComponent,DisplayNotFoundComponent, SpinnerComponent],
+    InputStringFormComponent, InputSwitchFormComponent, ValidateButtonComponent, CancelButtonComponent, DeleteButtonComponent, InputUrlImageFormComponent, DisplayNotFoundComponent, SpinnerComponent],
   templateUrl: './store-form.component.html',
   providers: [
     {
@@ -77,7 +77,7 @@ export class StoreFormComponent {
                 latitude: response.location.latitude + '',
                 longitude: response.location.longitude + '',
               })
-              this.isLoading = false
+            this.isLoading = false
           },
           error: (error) => {
             this.navigationPathService.setInStores(false);
@@ -86,7 +86,7 @@ export class StoreFormComponent {
             this.navigationPathService.setProductName(undefined);
             this.navigationPathService.setStoreId(undefined);
             this.navigationPathService.setProductId(undefined);
-            this.isLoading = false            
+            this.isLoading = false
           },
         });
     }
@@ -138,8 +138,22 @@ export class StoreFormComponent {
 
   ngOnInit() {
     this.title = this.storeId !== undefined ? "Edit the store" : "Create a new store";
-    if (this.storeId && this.storeId)
+    if (this.storeId) {
       this.loadStore();
+    }
+    else {
+      this.store ={id:-1,name:'',contactPhone:'',address:{
+        streetNumber: '',
+        streetName: '',
+        city: '',
+        state: '',
+        zipCode: ''
+      },location:{
+        latitude: 0,
+        longitude: 0
+      }};
+      this.isLoading = false;
+    }
   }
 
   onSubmit(): void {
@@ -161,7 +175,8 @@ export class StoreFormComponent {
         name: this.form.controls.name.value,
         address: address,
         location: location,
-        contactPhone: ''
+        contactPhone: '',
+        imageUrl:this.form.controls.imageUrl.value,
       };
       if (!isNaN(idStore)) {
         this.updateStore(idStore, store);
@@ -263,7 +278,6 @@ export class StoreFormComponent {
 
   cancelButton: ButtonProps = {
     functionToDo: () => {
-      if (this.storeId)
         this.router.navigate([`/stores`]);
     },
     title: 'Cancel'

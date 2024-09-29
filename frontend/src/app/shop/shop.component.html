@@ -1,9 +1,18 @@
 <div class="pb-4">
   @if(orderConfirmModal){
-    <app-order-confirm-modal (onClickCrossButtonEvent)="changeIsConfirmModalVisible($event)"/>
+  <app-order-confirm-modal
+    (onClickCrossButtonEvent)="changeIsConfirmModalVisible($event)"
+  />
   }
-  <app-shop-cart [cart]="cartShopList" (quantityChangeEvent)="changeQuantityInCartShop($event)" [cartListVisible]="cartListVisible" (onClickCrossButtonEvent)="changeIsCartVisible($event)" (onClickCrossButtonConfirmModalEvent)="changeIsConfirmModalVisible($event)"/>
-  
+    <app-shop-cart
+      [cart]="cartShopList"
+      (quantityChangeEvent)="changeQuantityInCartShop($event)"
+      [cartListVisible]="cartListVisible"
+      (onClickCrossButtonEvent)="changeIsCartVisible($event)"
+      (onClickCrossButtonConfirmModalEvent)="
+        changeIsConfirmModalVisible($event)
+      "
+    />
   <app-shop-header
     [listOfStores]="listOfStores"
     [selectedStore]="shopSelected"
@@ -26,7 +35,7 @@
   <div class="mb-4">
     <!---->
     <app-shop-category-list
-      (clickInCategoryItemEvent)="changeCategoriesFilters($event)" 
+      (clickInCategoryItemEvent)="changeCategoriesFilters($event)"
     />
   </div>
 

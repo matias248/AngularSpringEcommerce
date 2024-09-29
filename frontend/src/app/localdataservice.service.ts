@@ -43,42 +43,42 @@ export class LocaldataserviceService {
       "currency": "€"
     },
   ];
-  stores: StoreDTO[] =[
+  stores: StoreDTO[] = [
     {
-        id: 1,
-        name: "Simple Store",
-        address: {
-            streetNumber:"0",
-            streetName:"Street Name",
-            city:"Simple City D.C",
-            state:"Simple Country",
-            zipCode:"31000",
-        },
-        location: {
-            latitude:1,
-            longitude:2,
-        },
-        contactPhone: "+33 123456",
-        imageUrl:"assets/store1.jpeg"
+      id: 1,
+      name: "Simple Store",
+      address: {
+        streetNumber: "0",
+        streetName: "Street Name",
+        city: "Simple City D.C",
+        state: "Simple Country",
+        zipCode: "31000",
+      },
+      location: {
+        latitude: 1,
+        longitude: 2,
+      },
+      contactPhone: "+33 123456",
+      imageUrl: "assets/store1.jpeg"
     },
     {
-        id: 2,
-        name: "Neo store",
-        address: {
-            streetNumber:"0",
-            streetName:"Street Name",
-            city:"Neo City",
-            state:"Neo Country",
-            zipCode:"31000",
-        },
-        location: {
-            latitude:1,
-            longitude:2,
-        },
-        contactPhone: "+33 123456",
-        imageUrl:"assets/store2.jpeg"
+      id: 2,
+      name: "Neo store",
+      address: {
+        streetNumber: "0",
+        streetName: "Street Name",
+        city: "Neo City",
+        state: "Neo Country",
+        zipCode: "31000",
+      },
+      location: {
+        latitude: 1,
+        longitude: 2,
+      },
+      contactPhone: "+33 123456",
+      imageUrl: "assets/store2.jpeg"
     },
-];
+  ];
 
   getProducts(): ProductDTO[] {
     return this.products;
@@ -114,6 +114,11 @@ export class LocaldataserviceService {
       this.products.splice(index, 1);
     }
 
+  }
+  deleteProductByStoreId(id: number) {
+    this.products = this.products.filter((product) => {
+      return product.storeId != id;
+    })
   }
 
   deleteStore(index: number) {

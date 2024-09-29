@@ -17,8 +17,8 @@
   </div>
   }
 </div>
-@if( !isLoading && paginatedProductsWithStore ){
+@if( !isLoading && !paginatedProductsWithStore ){
 <app-display-not-found />
 } @if( isLoading ){
-<div className="flex justify-center"><app-spinner /></div>
+<div class="flex justify-center"><app-spinner /></div>
 }

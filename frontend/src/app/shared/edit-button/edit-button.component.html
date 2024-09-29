@@ -1,5 +1,5 @@
 <button
-  id="{{ 'editButton' + (id ? '' : id) }}"
+  id="{{ 'editButton' + (id ?? '') }}"
   class="{{ 'w-14 bg-gray-600 rounded-lg dark:fill-white ' + styleOverride }}"
   [routerLink]="[urlToGo]"
   (click)="$event.stopPropagation()"

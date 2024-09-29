@@ -3,12 +3,24 @@ import { StoreDTO } from '../../dto/StoreDTO';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ButtonConfirmComponent } from './button-confirm/button-confirm.component';
 import { StoreInputListComponent } from './store-input-list/store-input-list.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-shop-selector-dialog',
   standalone: true,
   imports: [SearchBarComponent, ButtonConfirmComponent, StoreInputListComponent],
-  templateUrl: './shop-selector-dialog.component.html'
+  templateUrl: './shop-selector-dialog.component.html',
+  animations: [
+    trigger('openClose', [
+      state('closed', style({
+        transform: 'translateX(-100%)'
+      })),
+      state('open', style({
+        transform: 'translateX(0%)',
+      })),
+      transition('closed <=> open', [animate('1s ease-in-out')])
+    ])
+  ]
 })
 export class ShopSelectorDialogComponent implements OnInit {
 
@@ -16,6 +28,7 @@ export class ShopSelectorDialogComponent implements OnInit {
   @Input() selectedStore: StoreDTO | undefined;
   @Input() shopTextFilter: string = "";
   @Input() handlerShopTextFilter!: (text: string) => void;
+  @Input() isShopDialogOpen:boolean=false;
 
   temporalStore: StoreDTO | undefined;
   @Output() closeDialogEvent = new EventEmitter<void>();

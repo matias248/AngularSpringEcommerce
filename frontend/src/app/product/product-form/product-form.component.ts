@@ -45,7 +45,7 @@ export class ProductFormComponent {
 
   @Input('id') storeId: string | undefined = undefined;
   @Input() productId: string | undefined = undefined;
-  productExist?: boolean = false;
+  formCorrect?: boolean = false;
   isLoading: boolean = true;
   constructor(private readonly changeDetectorRef: ChangeDetectorRef, private router: Router, @Inject('ApiProductService') private productService: ApiProductService, private navigationPathService: NavigationPathService) { }
 
@@ -61,7 +61,7 @@ export class ProductFormComponent {
             this.navigationPathService.setProductId(response.product.id);
             this.navigationPathService.setStoreId(response.store.id);
             this.form.patchValue({
-              name: response.store.name,
+              name: response.product.name,
               description: response.product.description,
               price: response.product.price + '',
               inventoryStatus: response.product.inventoryStatus,
@@ -69,7 +69,7 @@ export class ProductFormComponent {
               currency: response.product.currency,
               imageUrl: response.product.imageUrl,
             })
-            this.productExist = true;
+            this.formCorrect = true;
             this.isLoading = false
           },
           error: (error) => {
@@ -80,7 +80,7 @@ export class ProductFormComponent {
             this.navigationPathService.setStoreId(undefined);
             this.navigationPathService.setProductId(undefined);
             this.isLoading = false
-            this.productExist = false;
+            this.formCorrect = false;
           },
         });
     }
@@ -132,8 +132,18 @@ export class ProductFormComponent {
 
   ngOnInit() {
     this.title = this.productId !== undefined ? "Edit the product" : "Create a new product";
-    if (this.productId && this.storeId)
+    console.log("LALA")
+
+    if (this.productId && this.storeId){
+      console.log("LELE")
+
       this.loadProduct(+this.productId, +this.storeId);
+    }
+    else{
+      this.isLoading = false;
+      this.formCorrect = true;
+    }
+    console.log("lili")
   }
 
   onSubmit(): void {

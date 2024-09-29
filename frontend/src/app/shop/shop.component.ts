@@ -17,6 +17,7 @@ import { ShopProductListComponent } from './shop-product-list/shop-product-list.
 import { CartItemDTO } from '../dto/CartItem';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { OrderConfirmModalComponent } from './order-confirm-modal/order-confirm-modal.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-shop',
@@ -44,7 +45,7 @@ import { OrderConfirmModalComponent } from './order-confirm-modal/order-confirm-
         }
       }
     }
-  ]
+  ],
 })
 export class ShopComponent {
   products?: ProductDTO[];
@@ -76,7 +77,7 @@ export class ShopComponent {
       });
   }
   loadProducts(): void {
-    this.productService.getProductsPublic(this.listCategoryFilter, this.currentPage, 1, this.productTextFilter, this.shopSelected?.id)
+    this.productService.getProductsPublic(this.listCategoryFilter, this.currentPage, 10, this.productTextFilter, this.shopSelected?.id)
       .subscribe({
         next: (response: ProductListDTO) => {
           this.products = (response.products);

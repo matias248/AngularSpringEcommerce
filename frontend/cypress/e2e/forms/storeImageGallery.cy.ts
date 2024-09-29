@@ -24,9 +24,9 @@ describe('Test ImageGallery product ', () => {
   
       // Long Description and Long Name 
       cy.get('#editButton1').click();
-      cy.get('[name="name"]').clear().type('WWWWWWWWWWWWWWWWWW');
-      cy.get('[name="address.city"]').clear().type('WWWWWWWWWWWWWWWWWW');
-      cy.get('[name="address.state"]').clear().type('WWWWWWWWWWWWWWWWWW');
+      cy.get('#inputString-Name').clear().type('WWWWWWWWWWWWWWWWWW');
+      cy.get('#inputString-City').clear().type('WWWWWWWWWWWWWWWWWW');
+      cy.get('#inputString-State').clear().type('WWWWWWWWWWWWWWWWWW');
 
   
     

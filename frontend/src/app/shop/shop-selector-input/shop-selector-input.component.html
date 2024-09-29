@@ -1,19 +1,26 @@
-@if(isShopDialogOpen){
-    <app-shop-selector-dialog [listOfStores]="listOfStores" [selectedStore]="selectedStore" 
-    [shopTextFilter]="shopTextFilter" 
-    (closeDialogEvent)="setIsShopDialogOpen(false)" 
-    (confirmButtonEvent)="confirmButtonFunction($event)"
-    (onSubmitSearchBarStoresEvent)="onSubmitSearchBarStoresFunction($event)"
-    [handlerShopTextFilter]="handlerShopTextFilter" />
-}
+<app-shop-selector-dialog
+  [listOfStores]="listOfStores"
+  [selectedStore]="selectedStore"
+  [shopTextFilter]="shopTextFilter"
+  (closeDialogEvent)="setIsShopDialogOpen(false)"
+  (confirmButtonEvent)="confirmButtonFunction($event)"
+  (onSubmitSearchBarStoresEvent)="onSubmitSearchBarStoresFunction($event)"
+  [handlerShopTextFilter]="handlerShopTextFilter"
+  [isShopDialogOpen]="isShopDialogOpen"
+/>
 
-<div id='ShopSelectorInput' class="flex h-full border-2 border-gray-400 rounded-lg dark:border-slate-700 " (click)="clickOnComponent($event)">
-    <div class=" w-[144px] ml-2" >
-        <p class="text-sm dark:text-white truncate  max-w-full">My store
-        </p>
-        <p class="text-xs dark:text-white truncate max-w-full">{{selectedStore?.name ?? "Store not selected"}}</p>
-    </div>
-    <div class="size-[40px] flex items-center justify-items-center">
-        <app-arrow-down class="dark:fill-white " />
-    </div>
+<div
+  id="ShopSelectorInput"
+  class="flex h-full border-2 border-gray-400 rounded-lg dark:border-slate-700"
+  (click)="clickOnComponent($event)"
+>
+  <div class="w-[144px] ml-2">
+    <p class="text-sm dark:text-white truncate max-w-full">My store</p>
+    <p class="text-xs dark:text-white truncate max-w-full">
+      {{ selectedStore?.name ?? "Store not selected" }}
+    </p>
+  </div>
+  <div class="size-[40px] flex items-center justify-items-center">
+    <app-arrow-down class="dark:fill-white" />
+  </div>
 </div>

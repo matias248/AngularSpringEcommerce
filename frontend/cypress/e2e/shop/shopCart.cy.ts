@@ -2,7 +2,7 @@ describe('Shop cart test', () => {
     beforeEach(() => {
         cy.visit('shop/');
     })
-    /* it('Buy a product', function () {
+     it('Buy a product', function () {
          cy.get('#ShopProductElementGalleryContainer1').contains('+').click();
          cy.get('#shoppingCart').click()
          cy.get('[name="confirmDialogShopButton"]').click()
@@ -12,7 +12,7 @@ describe('Shop cart test', () => {
          cy.get('#shoppingCart').click()
          cy.get('[name="confirmDialogShopButton"]').click()
          cy.get("#orderConfirmModal").should('not.exist')
-     })*/
+     })
     it('Add a product in products list and reduce the product in cart shop List', function () {
         cy.get('#ShopProductElementGalleryContainer1').contains('+').click();
         cy.get('#shoppingCart').click()

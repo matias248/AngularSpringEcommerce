@@ -1,6 +1,6 @@
 <div class="flex items-center flex-col pb-4">
   <div class="mb-6 text-4xl text-center mb-16 dark:text-white">{{ title }}</div>
-  @if( !isLoading && productExist ){
+  @if( !isLoading && formCorrect ){
   <form
     appFocusInvalidInput
     [formGroup]="form"
@@ -31,7 +31,7 @@
       <app-cancel-button [buttonProps]="cancelButton" class="flex" />
     </div>
   </form>
-  } @if( !isLoading && productExist==false ){
+  } @if( !isLoading && formCorrect==false ){
   <app-display-not-found />
   } @if( isLoading ){
   <div className="flex justify-center"><app-spinner /></div>

@@ -4,7 +4,8 @@ describe('Product list items', () => {
     })
 
     it('Click - when quantity is 0 in product list item', function () {
-        cy.get('#ShopProductElementGalleryContainer1').contains('-').should('be.disabled')
+        cy.get('#ShopProductElementGalleryContainer1').contains('-').click()
+        cy.get('#minusPlusProductItem1input').should('have.value', '0')
         cy.get('#shoppingCart').click()
         cy.get('#ShopCartItem1').should('not.exist');
         cy.get('#emptyCartShop').should('exist')

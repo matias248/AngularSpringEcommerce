@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StoreDTO } from '../../dto/StoreDTO';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { ApiStoreService } from './storeInterface';
 import { LocaldataserviceService } from '../../localdataservice.service';
 import { filterStores } from '../../utils/utilsFunctions';
@@ -23,7 +23,7 @@ export class StoreLocalService implements ApiStoreService {
       newStore.id = id;
       return of(this.localDataService.updateStore(newStore, index));
     }
-    throw new Error('Store not found!');
+    return throwError(() => new Error('Store not found!'));
   }
 
   getStores(): Observable<StoreDTO[]> {
@@ -33,7 +33,7 @@ export class StoreLocalService implements ApiStoreService {
     const store = this.localDataService.stores.find(s => s.id === id);
     if (store)
       return of(store);
-    throw new Error('Store not found!');
+    return throwError(() => new Error('Store not found!'));
   }
   createStore(store: StoreDTO): Observable<StoreDTO> {
     const newId = this.localDataService.stores.length > 0 ? Math.max(...this.localDataService.stores.map(j => j.id)) + 1 : 1;
@@ -47,13 +47,10 @@ export class StoreLocalService implements ApiStoreService {
     const index = this.localDataService.stores.findIndex(j => j.id === id);
     if (index !== -1) {
       let deletedStore = this.localDataService.stores[index];
+      this.localDataService.deleteProductByStoreId(id);
       this.localDataService.deleteStore(index);
-      this.localDataService.products.filter((product) => {
-        return product.storeId === deletedStore.id;
-      })
-      this.localDataService.deleteProduct
       return of(deletedStore);
     }
-    throw new Error('Store not found!');
+    return throwError(() => new Error('Store not found!'));
   }
 }

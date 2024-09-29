@@ -1,3 +1,5 @@
+import { first } from "cypress/types/lodash";
+
 describe('filters on the shop', () => {
     beforeEach(() => {
         cy.visit('shop/');
@@ -19,11 +21,11 @@ describe('filters on the shop', () => {
         cy.contains('My store').click();
         cy.contains('Simple Store').should('exist');
         cy.contains('Neo store').should('exist');
-        cy.get('#default-searchfiltershops').type('Neo');
-        cy.get('#buttonSearchfiltershops').click()
+        cy.get('#default-searchfilterstores').type('Neo');
+        cy.get('#buttonSearchfilterstores').click()
         cy.contains('Simple Store').should('not.exist');
         cy.contains('Neo store').should('exist').click();
-        cy.get('[name="confirmDialogShopButton"]').click();
+        cy.get('[name="confirmDialogButton-Select store"]').first().click();
         cy.get('#ShopProductElementGallery1').should('not.exist');
         cy.get('#ShopProductElementGallery2').should('not.exist');
         cy.get('#ShopProductElementGallery3').should('exist');
@@ -43,7 +45,7 @@ describe('filters on the shop', () => {
         cy.get('#shopProductList').get('#ShopProductElementGallery3').should('not.exist');
         cy.contains('My store').click();
         cy.contains('Neo store').click();
-        cy.get('[name="confirmDialogShopButton"]').click();
+        cy.get('[name="confirmDialogButton-Select store"]').first().click();
         cy.get('#shopProductListContainer').get('#ShopProductElementGallery1').should('not.exist');
         cy.get('#shopProductListContainer').contains('No items found').should('exist');
     })
