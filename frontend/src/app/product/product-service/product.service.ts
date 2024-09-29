@@ -17,7 +17,6 @@ export class ProductService implements ApiProductService {
   }
 
   getProductsPublic(categories: string[], pageIndex: number, elementsPerPage: number, textFilter: string, storeId?: number): Observable<ProductListDTO> {
-    console.log("" + categories+"j" + pageIndex +"a"+ elementsPerPage + textFilter)
     const url = `${this.apiUrl}/public?categories=${categories}&page=${pageIndex}&pagelength=${elementsPerPage}&textfilter=${textFilter}${storeId ? "&storeid=" + storeId : ""}`;
     return this.http.get<ProductListDTO>(url);
   }

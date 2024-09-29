@@ -132,10 +132,8 @@ export class ProductFormComponent {
 
   ngOnInit() {
     this.title = this.productId !== undefined ? "Edit the product" : "Create a new product";
-    console.log("LALA")
 
     if (this.productId && this.storeId){
-      console.log("LELE")
 
       this.loadProduct(+this.productId, +this.storeId);
     }
@@ -143,7 +141,6 @@ export class ProductFormComponent {
       this.isLoading = false;
       this.formCorrect = true;
     }
-    console.log("lili")
   }
 
   onSubmit(): void {
