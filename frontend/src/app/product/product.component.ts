@@ -7,7 +7,7 @@ import { ProductListDTOwithStoreDTO } from '../dto/ProductDTO';
 import { ButtonProps } from '../utils/utilsFunctions';
 import { CreateItemButtonComponent } from '../shared/create-item-button/create-item-button.component';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment.localdata';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ProductLocalService } from './product-service/product-local.service';
 import { ApiProductService } from './product-service/productInterface';
@@ -24,7 +24,7 @@ import { DisplayNotFoundComponent } from '../shared/display-not-found/display-no
     {
       provide: 'ApiProductService',
       useFactory: () => {
-        if (environment.environmentName === 'localdata') {
+        if (environment.environmentName == 'localdata') {
           return new ProductLocalService(inject(LocaldataserviceService));
         } else {
           return new ProductService(inject(HttpClient));

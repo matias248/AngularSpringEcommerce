@@ -2,7 +2,7 @@ import { Component, Inject, inject } from '@angular/core';
 import { ProductDTO, ProductListDTO } from '../dto/ProductDTO';
 import { StoreDTO } from '../dto/StoreDTO';
 import { ShopHeaderComponent } from './shop-header/shop-header.component';
-import { environment } from '../../environments/environment.localdata';
+import { environment } from '../../environments/environment';
 import { StoreLocalService } from '../store/store-service/store-local.service';
 import { StoreService } from '../store/store-service/store.service';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +17,6 @@ import { ShopProductListComponent } from './shop-product-list/shop-product-list.
 import { CartItemDTO } from '../dto/CartItem';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { OrderConfirmModalComponent } from './order-confirm-modal/order-confirm-modal.component';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-shop',

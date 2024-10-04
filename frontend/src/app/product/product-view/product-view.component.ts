@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { CapitalizeAndFormatPipe } from '../../pipe/capitalize-and-format.pipe';
 import { NavigationPathService } from '../../navigation-path/navigation-path.service';
 import { ApiProductService } from '../product-service/productInterface';
-import { environment } from '../../../environments/environment.localdata';
+import { environment } from '../../../environments/environment';
 import { ProductLocalService } from '../product-service/product-local.service';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../product-service/product.service';

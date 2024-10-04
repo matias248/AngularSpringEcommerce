@@ -13,7 +13,7 @@ import { InputUrlImageFormComponent } from '../../shared/input-url-image-form/in
 import { NavigationPathService } from '../../navigation-path/navigation-path.service';
 import { DESCRIPTION_RESTRICTION, descriptionRestrictionMessage, NAME_RESTRICTION, nameRestrictionMessage, onlyNumbersRestrictionMessage, REGEX } from '../../constants';
 import { FormDirective } from '../../directives/focus-invalid-input.directive';
-import { environment } from '../../../environments/environment.localdata';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ProductLocalService } from '../product-service/product-local.service';
 import { ProductService } from '../product-service/product.service';

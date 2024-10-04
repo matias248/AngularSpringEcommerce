@@ -9,7 +9,6 @@ on:
 jobs:
   testBackend:
     runs-on: ubuntu-latest
-    if: contains(github.event.commits.*.modified, 'backend/') || contains(github.event.head_commit.message, 'backend')
     steps:
       - uses: actions/checkout@v4
       - name: Setup java
@@ -33,7 +32,6 @@ jobs:
 
   testCypressFrontEnd:
     runs-on: ubuntu-latest
-    if: contains(github.event.commits.*.modified, 'frontend/') || contains(github.event.head_commit.message, 'frontend')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -46,10 +44,3 @@ jobs:
           browser: chrome
           start: npm run start
           wait-on: "http://localhost:4200"
-        
-  
-
-
-
-  
-

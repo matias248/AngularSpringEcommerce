@@ -16,7 +16,7 @@ import { ButtonProps, InputFormProps, InputTextFormProps } from '../../utils/uti
 import { Address } from '../../dto/Address';
 import { GeoPoint } from '../../dto/GeoPoint';
 import { FormDirective } from '../../directives/focus-invalid-input.directive';
-import { environment } from '../../../environments/environment.localdata';
+import { environment } from '../../../environments/environment';
 import { StoreLocalService } from '../store-service/store-local.service';
 import { HttpClient } from '@angular/common/http';
 import { ApiStoreService } from '../store-service/storeInterface';

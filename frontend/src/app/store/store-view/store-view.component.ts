@@ -5,7 +5,7 @@ import { TypeofPipe } from '../../pipe/typeof.pipe';
 import { RouterLink } from '@angular/router';
 import { CapitalizeAndFormatPipe } from '../../pipe/capitalize-and-format.pipe';
 import { NavigationPathService } from '../../navigation-path/navigation-path.service';
-import { environment } from '../../../environments/environment.localdata';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { StoreLocalService } from '../store-service/store-local.service';
 import { ApiStoreService } from '../store-service/storeInterface';

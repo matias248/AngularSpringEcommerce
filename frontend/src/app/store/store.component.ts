@@ -10,7 +10,7 @@ import { CreateItemButtonComponent } from '../shared/create-item-button/create-i
 import { ApiStoreService } from './store-service/storeInterface';
 import { HttpClient } from '@angular/common/http';
 import { StoreLocalService } from './store-service/store-local.service';
-import { environment } from '../../environments/environment.localdata';
+import { environment } from '../../environments/environment';
 import { LocaldataserviceService } from '../localdataservice.service';
 import { DisplayNotFoundComponent } from '../shared/display-not-found/display-not-found.component';
 import { SpinnerComponent } from '../svg/spinner/spinner.component';
