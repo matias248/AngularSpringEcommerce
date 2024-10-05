@@ -171,4 +171,9 @@ export class ShopComponent {
   changeIsConfirmModalVisible = (orderConfirmModal: boolean) => {
     this.orderConfirmModal = orderConfirmModal;
   }
+  onModalClose = (bool: boolean) =>{
+    this.cartListVisible = false;
+    this.cartShopList = [];
+    this.changeIsConfirmModalVisible(bool);
+  }
 }

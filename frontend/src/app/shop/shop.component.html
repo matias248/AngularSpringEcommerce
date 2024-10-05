@@ -1,7 +1,7 @@
 <div class="pb-4">
   @if(orderConfirmModal){
   <app-order-confirm-modal
-    (onClickCrossButtonEvent)="changeIsConfirmModalVisible($event)"
+    (onClickCrossButtonEvent)="onModalClose($event)"
   />
   }
     <app-shop-cart
