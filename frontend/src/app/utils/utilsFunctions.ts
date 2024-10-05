@@ -138,3 +138,10 @@ export function formatInputNumber(number: number): string {
         maximumFractionDigits: 0,
     });
 }
+
+export function getTotalProductsElements(cartShopList: CartItemDTO[]): number {
+    let totalElements = cartShopList.reduce((accumulator, currentValue) => {
+        return currentValue.quantity + accumulator;
+    }, 0);
+    return totalElements;
+}

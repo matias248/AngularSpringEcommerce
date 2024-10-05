@@ -26,8 +26,7 @@
           @if(numberOfElementsInCartShop != 0 && numberOfElementsInCartShop !=
           undefined){
           <div
-            class="{{'absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full my-auto text-center flex items-center justify-center overflow-hidden '
-                        + (numberOfElementsInCartShop > 9 ? 'size-6 '' : 'size-5 ')}}"
+            class="{{'absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full my-auto text-center flex items-center justify-center overflow-hidden ' + (numberOfElementsInCartShop > 9 ? 'size-6 ' : 'size-5 ')}}"
           >
             <div>
               @if(numberOfElementsInCartShop > 99){ +99 } @else{

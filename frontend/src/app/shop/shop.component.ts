@@ -17,6 +17,7 @@ import { ShopProductListComponent } from './shop-product-list/shop-product-list.
 import { CartItemDTO } from '../dto/CartItem';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { OrderConfirmModalComponent } from './order-confirm-modal/order-confirm-modal.component';
+import { getTotalProductsElements } from '../utils/utilsFunctions';
 
 @Component({
   selector: 'app-shop',
@@ -52,7 +53,7 @@ export class ShopComponent {
   cartListVisible: boolean = false;
   orderConfirmModal: boolean = false;
   listCategoryFilter: string[] = [];
-  //const numberOfElementsInCartShop:number = getTotalProductsElements(cartShopList ?? []);
+  numberOfElementsInCartShop:number = 0;
   isLoading: boolean = false;
   currentPage: number = 1;
   totalPages: number = 1;
@@ -129,6 +130,7 @@ export class ShopComponent {
         this.cartShopList = newCartShopList;
       }
     }
+    this.numberOfElementsInCartShop = getTotalProductsElements(this.cartShopList ?? [])
   }
 
   changePageFunction = (newValue: number) => {
@@ -171,9 +173,11 @@ export class ShopComponent {
   changeIsConfirmModalVisible = (orderConfirmModal: boolean) => {
     this.orderConfirmModal = orderConfirmModal;
   }
-  onModalClose = (bool: boolean) =>{
+  onModalClose = (bool: boolean) => {
     this.cartListVisible = false;
     this.cartShopList = [];
+    this.numberOfElementsInCartShop = 0;
+
     this.changeIsConfirmModalVisible(bool);
   }
 }

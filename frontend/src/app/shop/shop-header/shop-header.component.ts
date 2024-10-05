@@ -21,7 +21,7 @@ export class ShopHeaderComponent {
 
   @Input() textFilterProduct: string = "";
 
-  @Input() numberOfElementsInCartShop?: number;
+  @Input() numberOfElementsInCartShop: number=0;
 
   @Output() confirmButtonEvent = new EventEmitter<StoreDTO>();
   confirmButtonFunction = (store: StoreDTO) => {
