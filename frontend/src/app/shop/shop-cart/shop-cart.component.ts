@@ -26,7 +26,6 @@ export class ShopCartComponent {
   _cart?: CartItemDTO[];
   totalPriceCart = "0";
   
-
   @Input() cartListVisible: boolean = false;
 
   @Input() set cart(value: CartItemDTO[] | undefined) {
