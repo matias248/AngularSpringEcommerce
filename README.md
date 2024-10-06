@@ -8,8 +8,8 @@
 
 **Guide:
 
-Front-end:
-**
+Front-end:**
+
 npm i => install dependencies
 ng serve --configuration=localdata => static front-end data loaded / not persistent data (example:F5 restarts data)
 ng serve --configuration=database  => comunicate with backend for data (init backend too)
