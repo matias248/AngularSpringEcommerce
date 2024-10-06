@@ -38056,6 +38056,12 @@ function formatPrice(number) {
     maximumFractionDigits: 2
   });
 }
+function getTotalProductsElements(cartShopList) {
+  let totalElements = cartShopList.reduce((accumulator, currentValue) => {
+    return currentValue.quantity + accumulator;
+  }, 0);
+  return totalElements;
+}
 
 // src/app/localdataservice.service.ts
 var _LocaldataserviceService = class _LocaldataserviceService {
@@ -47408,36 +47414,67 @@ var ShopSelectorInputComponent = _ShopSelectorInputComponent;
 })();
 
 // src/app/shop/shop-header/shop-header.component.ts
-function ShopHeaderComponent_Conditional_11_Conditional_2_Template(rf, ctx) {
+var _c06 = ["buttonCart"];
+function ShopHeaderComponent_Conditional_12_Conditional_2_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0, " +99 ");
   }
 }
-function ShopHeaderComponent_Conditional_11_Conditional_3_Template(rf, ctx) {
+function ShopHeaderComponent_Conditional_12_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext(2);
-    \u0275\u0275textInterpolate1(" ", ctx_r0.numberOfElementsInCartShop, " ");
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275textInterpolate1(" ", ctx_r1.numberOfElementsInCartShop, " ");
   }
 }
-function ShopHeaderComponent_Conditional_11_Template(rf, ctx) {
+function ShopHeaderComponent_Conditional_12_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 10)(1, "div");
-    \u0275\u0275template(2, ShopHeaderComponent_Conditional_11_Conditional_2_Template, 1, 0)(3, ShopHeaderComponent_Conditional_11_Conditional_3_Template, 1, 1);
+    \u0275\u0275elementStart(0, "div")(1, "div");
+    \u0275\u0275template(2, ShopHeaderComponent_Conditional_12_Conditional_2_Template, 1, 0)(3, ShopHeaderComponent_Conditional_12_Conditional_3_Template, 1, 1);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r0 = \u0275\u0275nextContext();
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275classMap("absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full my-auto text-center flex items-center justify-center overflow-hidden " + (ctx_r1.numberOfElementsInCartShop > 9 ? "size-6 " : "size-5 "));
     \u0275\u0275advance(2);
-    \u0275\u0275conditional(2, ctx_r0.numberOfElementsInCartShop > 99 ? 2 : 3);
+    \u0275\u0275conditional(2, ctx_r1.numberOfElementsInCartShop > 99 ? 2 : 3);
+  }
+}
+function ShopHeaderComponent_Conditional_19_Conditional_2_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " +99 ");
+  }
+}
+function ShopHeaderComponent_Conditional_19_Conditional_3_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0);
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275textInterpolate1(" ", ctx_r1.numberOfElementsInCartShop, " ");
+  }
+}
+function ShopHeaderComponent_Conditional_19_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div")(1, "div");
+    \u0275\u0275template(2, ShopHeaderComponent_Conditional_19_Conditional_2_Template, 1, 0)(3, ShopHeaderComponent_Conditional_19_Conditional_3_Template, 1, 1);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275classMap("absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full my-auto text-center flex items-center justify-center overflow-hidden " + (ctx_r1.numberOfElementsInCartShop > 9 ? "size-6 " : "size-5 "));
+    \u0275\u0275advance(2);
+    \u0275\u0275conditional(2, ctx_r1.numberOfElementsInCartShop > 99 ? 2 : 3);
   }
 }
 var _ShopHeaderComponent = class _ShopHeaderComponent {
   constructor() {
     this.textFilterShop = "";
     this.textFilterProduct = "";
+    this.numberOfElementsInCartShop = 0;
+    this.isButtonCartVisible = true;
     this.confirmButtonEvent = new EventEmitter();
     this.confirmButtonFunction = (store2) => {
       this.confirmButtonEvent.emit(store2);
@@ -47455,46 +47492,103 @@ var _ShopHeaderComponent = class _ShopHeaderComponent {
       this.onClickCartButtonEvent.emit(value);
     };
   }
+  ngAfterViewInit() {
+    const threshold = 0;
+    if (typeof window !== "undefined") {
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            this.isButtonCartVisible = false;
+          } else {
+            this.isButtonCartVisible = true;
+          }
+        });
+      }, { threshold });
+    }
+    this.observer?.observe(this.buttonCart.nativeElement);
+  }
+  ngOnDestroy() {
+    this.observer?.disconnect();
+  }
 };
 _ShopHeaderComponent.\u0275fac = function ShopHeaderComponent_Factory(t) {
   return new (t || _ShopHeaderComponent)();
 };
-_ShopHeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ShopHeaderComponent, selectors: [["app-shop-header"]], inputs: { listOfStores: "listOfStores", selectedStore: "selectedStore", textFilterShop: "textFilterShop", textFilterProduct: "textFilterProduct", numberOfElementsInCartShop: "numberOfElementsInCartShop" }, outputs: { confirmButtonEvent: "confirmButtonEvent", onSubmitSearchBarProductsEvent: "onSubmitSearchBarProductsEvent", onSubmitSearchBarStoresEvent: "onSubmitSearchBarStoresEvent", onClickCartButtonEvent: "onClickCartButtonEvent" }, standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 12, vars: 5, consts: [[1, "h-[64px]", "mb-4", "sm:mb-8"], [1, "bg-slate-100", "border-gray-200", "dark:bg-gray-800", "max-w-[1000px]", "mx-auto", "w-[90%]", "rounded-lg"], [1, "flex", "items-center", "max-w-full", "gap-[4px]", "justify-between", "mx-2"], [1, "hidden", "sm:block"], [3, "confirmButtonEvent", "onSubmitSearchBarStoresEvent", "listOfStores", "selectedStore", "shopTextFilter"], [1, "flex-1"], ["id", "filterproducts", 3, "onSubmitEvent", "textFilter", "textHover"], [1, "flex", "items-center", "lg:order-2"], ["id", "shoppingCart", 1, "relative", "bg-blue-600", "hover:bg-blue-700", "rounded-full", "p-3", "dark:bg-blue-600", "dark:hover:bg-blue-700", "focus:outline-none", 3, "click"], [1, "size-6"], [1, "{{'absolute", "top-0", "right-0", "bg-red-500", "text-white", "text-xs", "rounded-full", "my-auto", "text-center", "flex", "items-center", "justify-center", "overflow-hidden", "'", "+", "(numberOfElementsInCartShop", ">", "9", "?", "'size-6", "''", ":", "'size-5", "')}}"]], template: function ShopHeaderComponent_Template(rf, ctx) {
+_ShopHeaderComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ShopHeaderComponent, selectors: [["app-shop-header"]], viewQuery: function ShopHeaderComponent_Query(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "header", 0)(1, "div", 1)(2, "div", 2)(3, "div", 3)(4, "app-shop-selector-input", 4);
+    \u0275\u0275viewQuery(_c06, 5);
+  }
+  if (rf & 2) {
+    let _t;
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.buttonCart = _t.first);
+  }
+}, inputs: { listOfStores: "listOfStores", selectedStore: "selectedStore", textFilterShop: "textFilterShop", textFilterProduct: "textFilterProduct", numberOfElementsInCartShop: "numberOfElementsInCartShop" }, outputs: { confirmButtonEvent: "confirmButtonEvent", onSubmitSearchBarProductsEvent: "onSubmitSearchBarProductsEvent", onSubmitSearchBarStoresEvent: "onSubmitSearchBarStoresEvent", onClickCartButtonEvent: "onClickCartButtonEvent" }, standalone: true, features: [\u0275\u0275StandaloneFeature], decls: 20, vars: 10, consts: [["buttonCart", ""], [1, "h-[64px]", "mb-4", "sm:mb-8"], [1, "bg-slate-100", "border-gray-200", "dark:bg-gray-800", "max-w-[1000px]", "mx-auto", "w-[90%]", "rounded-lg"], [1, "flex", "items-center", "max-w-full", "gap-[4px]", "justify-between", "mx-2"], [1, "hidden", "sm:block"], [3, "confirmButtonEvent", "onSubmitSearchBarStoresEvent", "listOfStores", "selectedStore", "shopTextFilter"], [1, "flex-1"], ["id", "filterproducts", 3, "onSubmitEvent", "textFilter", "textHover"], [1, "flex", "items-center", "lg:order-2"], ["id", "shoppingCart", 1, "relative", "bg-blue-600", "hover:bg-blue-700", "rounded-full", "p-3", "dark:bg-blue-600", "dark:hover:bg-blue-700", "focus:outline-none", 3, "click"], [1, "size-6"], [3, "class"], [1, "fixed", "w-[100%]", "top-4", "pointer-events-none"], [1, "mx-auto", "max-w-[1000px]", "w-[90%]", "flex", "flex-row-reverse", "px-2", "py-1"], ["id", "shoppingCart", 3, "click"]], template: function ShopHeaderComponent_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "header", 1)(1, "div", 2)(2, "div", 3)(3, "div", 4)(4, "app-shop-selector-input", 5);
     \u0275\u0275listener("confirmButtonEvent", function ShopHeaderComponent_Template_app_shop_selector_input_confirmButtonEvent_4_listener($event) {
-      return ctx.confirmButtonFunction($event);
+      \u0275\u0275restoreView(_r1);
+      return \u0275\u0275resetView(ctx.confirmButtonFunction($event));
     })("onSubmitSearchBarStoresEvent", function ShopHeaderComponent_Template_app_shop_selector_input_onSubmitSearchBarStoresEvent_4_listener($event) {
-      return ctx.onSubmitSearchBarStoresFunction($event);
+      \u0275\u0275restoreView(_r1);
+      return \u0275\u0275resetView(ctx.onSubmitSearchBarStoresFunction($event));
     });
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(5, "div", 5)(6, "app-search-bar", 6);
+    \u0275\u0275elementStart(5, "div", 6)(6, "app-search-bar", 7);
     \u0275\u0275listener("onSubmitEvent", function ShopHeaderComponent_Template_app_search_bar_onSubmitEvent_6_listener($event) {
-      return ctx.onSubmitSearchBarProductsFunction($event);
+      \u0275\u0275restoreView(_r1);
+      return \u0275\u0275resetView(ctx.onSubmitSearchBarProductsFunction($event));
     });
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(7, "div", 7)(8, "button", 8);
+    \u0275\u0275elementStart(7, "div", 8)(8, "button", 9, 0);
     \u0275\u0275listener("click", function ShopHeaderComponent_Template_button_click_8_listener() {
-      return ctx.onClickCartButtonFunction(true);
+      \u0275\u0275restoreView(_r1);
+      return \u0275\u0275resetView(ctx.onClickCartButtonFunction(true));
     });
-    \u0275\u0275elementStart(9, "div", 9);
-    \u0275\u0275element(10, "app-shop-icon");
+    \u0275\u0275elementStart(10, "div", 10);
+    \u0275\u0275element(11, "app-shop-icon");
     \u0275\u0275elementEnd();
-    \u0275\u0275template(11, ShopHeaderComponent_Conditional_11_Template, 4, 1, "div", 10);
-    \u0275\u0275elementEnd()()()()();
+    \u0275\u0275template(12, ShopHeaderComponent_Conditional_12_Template, 4, 4, "div", 11);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(13, "div", 12)(14, "div", 13)(15, "button", 14, 0);
+    \u0275\u0275listener("click", function ShopHeaderComponent_Template_button_click_15_listener() {
+      \u0275\u0275restoreView(_r1);
+      return \u0275\u0275resetView(ctx.onClickCartButtonFunction(true));
+    });
+    \u0275\u0275elementStart(17, "div", 10);
+    \u0275\u0275element(18, "app-shop-icon");
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(19, ShopHeaderComponent_Conditional_19_Template, 4, 4, "div", 11);
+    \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
     \u0275\u0275advance(4);
     \u0275\u0275property("listOfStores", ctx.listOfStores)("selectedStore", ctx.selectedStore)("shopTextFilter", ctx.textFilterShop);
     \u0275\u0275advance(2);
     \u0275\u0275property("textFilter", ctx.textFilterProduct);
-    \u0275\u0275advance(5);
-    \u0275\u0275conditional(11, ctx.numberOfElementsInCartShop != 0 && ctx.numberOfElementsInCartShop != void 0 ? 11 : -1);
+    \u0275\u0275advance(6);
+    \u0275\u0275conditional(12, ctx.numberOfElementsInCartShop != 0 && ctx.numberOfElementsInCartShop != void 0 ? 12 : -1);
+    \u0275\u0275advance();
+    \u0275\u0275property("@openClose", !ctx.isButtonCartVisible ? "open" : "closed");
+    \u0275\u0275advance(2);
+    \u0275\u0275classMap("relative bg-blue-600 hover:bg-blue-700 rounded-full p-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none " + (!ctx.isButtonCartVisible ? "pointer-events-auto" : "pointer-events-none"));
+    \u0275\u0275advance(4);
+    \u0275\u0275conditional(19, ctx.numberOfElementsInCartShop != 0 && ctx.numberOfElementsInCartShop != void 0 ? 19 : -1);
   }
-}, dependencies: [ShopIconComponent, SearchBarComponent, ShopSelectorInputComponent], encapsulation: 2 });
+}, dependencies: [ShopIconComponent, SearchBarComponent, ShopSelectorInputComponent], encapsulation: 2, data: { animation: [
+  trigger("openClose", [
+    state("closed", style({
+      opacity: "0"
+    })),
+    state("open", style({
+      opacity: "1"
+    })),
+    transition("closed <=> open", [animate("1s ease-in-out")])
+  ])
+] } });
 var ShopHeaderComponent = _ShopHeaderComponent;
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShopHeaderComponent, { className: "ShopHeaderComponent", filePath: "src/app/shop/shop-header/shop-header.component.ts", lineNumber: 14 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShopHeaderComponent, { className: "ShopHeaderComponent", filePath: "src/app/shop/shop-header/shop-header.component.ts", lineNumber: 26 });
 })();
 
 // src/app/svg/cross-icon/cross-icon.component.ts
@@ -48288,7 +48382,7 @@ var ShopCartComponent = _ShopCartComponent;
 })();
 
 // src/app/shop/order-confirm-modal/order-confirm-modal.component.ts
-var _c06 = ["containerModal"];
+var _c07 = ["containerModal"];
 var _OrderConfirmModalComponent = class _OrderConfirmModalComponent {
   constructor(elementRef) {
     this.elementRef = elementRef;
@@ -48309,7 +48403,7 @@ _OrderConfirmModalComponent.\u0275fac = function OrderConfirmModalComponent_Fact
 };
 _OrderConfirmModalComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _OrderConfirmModalComponent, selectors: [["app-order-confirm-modal"]], viewQuery: function OrderConfirmModalComponent_Query(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275viewQuery(_c06, 5);
+    \u0275\u0275viewQuery(_c07, 5);
   }
   if (rf & 2) {
     let _t;
@@ -48355,7 +48449,7 @@ function ShopComponent_Conditional_1_Template(rf, ctx) {
     \u0275\u0275listener("onClickCrossButtonEvent", function ShopComponent_Conditional_1_Template_app_order_confirm_modal_onClickCrossButtonEvent_0_listener($event) {
       \u0275\u0275restoreView(_r1);
       const ctx_r1 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r1.changeIsConfirmModalVisible($event));
+      return \u0275\u0275resetView(ctx_r1.onModalClose($event));
     });
     \u0275\u0275elementEnd();
   }
@@ -48368,6 +48462,7 @@ var _ShopComponent = class _ShopComponent {
     this.cartListVisible = false;
     this.orderConfirmModal = false;
     this.listCategoryFilter = [];
+    this.numberOfElementsInCartShop = 0;
     this.isLoading = false;
     this.currentPage = 1;
     this.totalPages = 1;
@@ -48404,6 +48499,7 @@ var _ShopComponent = class _ShopComponent {
           this.cartShopList = newCartShopList;
         }
       }
+      this.numberOfElementsInCartShop = getTotalProductsElements(this.cartShopList ?? []);
     };
     this.changePageFunction = (newValue) => {
       this.currentPage = newValue;
@@ -48438,6 +48534,12 @@ var _ShopComponent = class _ShopComponent {
     };
     this.changeIsConfirmModalVisible = (orderConfirmModal) => {
       this.orderConfirmModal = orderConfirmModal;
+    };
+    this.onModalClose = (bool) => {
+      this.cartListVisible = false;
+      this.cartShopList = [];
+      this.numberOfElementsInCartShop = 0;
+      this.changeIsConfirmModalVisible(bool);
     };
   }
   loadStores() {
@@ -48492,7 +48594,7 @@ _ShopComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
       }
     }
   }
-]), \u0275\u0275StandaloneFeature], decls: 9, vars: 15, consts: [[1, "pb-4"], [3, "quantityChangeEvent", "onClickCrossButtonEvent", "onClickCrossButtonConfirmModalEvent", "cart", "cartListVisible"], [3, "confirmButtonEvent", "onSubmitSearchBarProductsEvent", "onSubmitSearchBarStoresEvent", "onClickCartButtonEvent", "listOfStores", "selectedStore", "textFilterShop", "textFilterProduct"], [1, "block", "sm:hidden", "ml-[5%]", "w-[188px]", "mb-4"], [3, "confirmButtonEvent", "onSubmitSearchBarStoresEvent", "listOfStores", "selectedStore", "shopTextFilter"], [1, "mb-4"], [3, "clickInCategoryItemEvent"], [3, "quantityChangeEvent", "changePageEvent", "products", "totalPages", "currentPage", "isLoading", "cartShopList"], [3, "onClickCrossButtonEvent"]], template: function ShopComponent_Template(rf, ctx) {
+]), \u0275\u0275StandaloneFeature], decls: 9, vars: 16, consts: [[1, "pb-4"], [3, "quantityChangeEvent", "onClickCrossButtonEvent", "onClickCrossButtonConfirmModalEvent", "cart", "cartListVisible"], [3, "confirmButtonEvent", "onSubmitSearchBarProductsEvent", "onSubmitSearchBarStoresEvent", "onClickCartButtonEvent", "listOfStores", "selectedStore", "textFilterShop", "textFilterProduct", "numberOfElementsInCartShop"], [1, "block", "sm:hidden", "ml-[5%]", "w-[188px]", "mb-4"], [3, "confirmButtonEvent", "onSubmitSearchBarStoresEvent", "listOfStores", "selectedStore", "shopTextFilter"], [1, "mb-4"], [3, "clickInCategoryItemEvent"], [3, "quantityChangeEvent", "changePageEvent", "products", "totalPages", "currentPage", "isLoading", "cartShopList"], [3, "onClickCrossButtonEvent"]], template: function ShopComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 0);
     \u0275\u0275template(1, ShopComponent_Conditional_1_Template, 1, 0, "app-order-confirm-modal");
@@ -48542,7 +48644,7 @@ _ShopComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275advance();
     \u0275\u0275property("cart", ctx.cartShopList)("cartListVisible", ctx.cartListVisible);
     \u0275\u0275advance();
-    \u0275\u0275property("listOfStores", ctx.listOfStores)("selectedStore", ctx.shopSelected)("textFilterShop", ctx.shopTextFilter)("textFilterProduct", ctx.productTextFilter);
+    \u0275\u0275property("listOfStores", ctx.listOfStores)("selectedStore", ctx.shopSelected)("textFilterShop", ctx.shopTextFilter)("textFilterProduct", ctx.productTextFilter)("numberOfElementsInCartShop", ctx.numberOfElementsInCartShop);
     \u0275\u0275advance(2);
     \u0275\u0275property("listOfStores", ctx.listOfStores)("selectedStore", ctx.shopSelected)("shopTextFilter", ctx.shopTextFilter);
     \u0275\u0275advance(3);
@@ -48551,7 +48653,7 @@ _ShopComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
 }, dependencies: [ShopHeaderComponent, ShopSelectorInputComponent, ShopCategoryListComponent, ShopProductListComponent, ShopCartComponent, OrderConfirmModalComponent], encapsulation: 2 });
 var ShopComponent = _ShopComponent;
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShopComponent, { className: "ShopComponent", filePath: "src/app/shop/shop.component.ts", lineNumber: 49 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ShopComponent, { className: "ShopComponent", filePath: "src/app/shop/shop.component.ts", lineNumber: 50 });
 })();
 
 // src/app/app.routes.ts
@@ -52711,7 +52813,7 @@ var FormsIconComponent = _FormsIconComponent;
 })();
 
 // src/app/header/header.component.ts
-var _c07 = () => ["/stores"];
+var _c08 = () => ["/stores"];
 var _c14 = () => ["/shop"];
 function HeaderComponent_button_9_Template(rf, ctx) {
   if (rf & 1) {
@@ -52723,7 +52825,7 @@ function HeaderComponent_button_9_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction0(1, _c07));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction0(1, _c08));
   }
 }
 function HeaderComponent_button_10_Template(rf, ctx) {
@@ -52777,7 +52879,7 @@ var HeaderComponent = _HeaderComponent;
 })();
 
 // src/app/navigation-path/navigation-path.component.ts
-var _c08 = () => ["/stores"];
+var _c09 = () => ["/stores"];
 var _c15 = (a0) => ["/stores", a0];
 var _c2 = (a0) => ["/stores", a0, "products"];
 var _c3 = (a0, a1) => ["/stores", a0, "products", a1];
@@ -52788,7 +52890,7 @@ function NavigationPathComponent_Conditional_0_Conditional_1_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    \u0275\u0275property("routerLink", \u0275\u0275pureFunction0(1, _c08));
+    \u0275\u0275property("routerLink", \u0275\u0275pureFunction0(1, _c09));
   }
 }
 function NavigationPathComponent_Conditional_0_Conditional_2_Template(rf, ctx) {
