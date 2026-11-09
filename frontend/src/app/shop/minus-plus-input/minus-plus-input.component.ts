@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
 
 @Component({
-  selector: 'app-minus-plus-input',
-  standalone: true,
-  imports: [FormsModule, OnlyNumbersDirective],
-  templateUrl: './minus-plus-input.component.html'
+    selector: 'app-minus-plus-input',
+    imports: [FormsModule, OnlyNumbersDirective],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './minus-plus-input.component.html'
 })
 export class MinusPlusInputComponent {
   _initialValue?: number;

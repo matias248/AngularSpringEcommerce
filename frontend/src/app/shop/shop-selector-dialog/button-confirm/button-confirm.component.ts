@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { StoreDTO } from '../../../dto/StoreDTO';
 
 
 @Component({
-  selector: 'app-button-confirm',
-  standalone: true,
-  imports: [],
-  templateUrl: './button-confirm.component.html'
+    selector: 'app-button-confirm',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './button-confirm.component.html'
 })
 export class ButtonConfirmComponent {
   @Input() title!: string;

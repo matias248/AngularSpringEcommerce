@@ -1,15 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { StoreDTO } from '../../dto/StoreDTO';
 import { ArrowDownComponent } from '../../svg/arrow-down/arrow-down.component';
 import { ShopSelectorDialogComponent } from '../shop-selector-dialog/shop-selector-dialog.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'app-shop-selector-input',
-  standalone: true,
-  imports: [ArrowDownComponent, ShopSelectorDialogComponent],
-  templateUrl: './shop-selector-input.component.html',
-  
+    selector: 'app-shop-selector-input',
+    imports: [ArrowDownComponent, ShopSelectorDialogComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './shop-selector-input.component.html'
 })
 export class ShopSelectorInputComponent {
 

@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../app/header/header.component'
 import { PathData } from './utils/utilsFunctions';
 import { NavigationPathComponent } from './navigation-path/navigation-path.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent,NavigationPathComponent],
-  templateUrl: './app.component.html',
+    selector: 'app-root',
+    imports: [RouterOutlet, HeaderComponent, NavigationPathComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'frontend';

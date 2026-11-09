@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ProductDTO, ProductListDTO } from '../dto/ProductDTO';
 import { StoreDTO } from '../dto/StoreDTO';
 import { ShopHeaderComponent } from './shop-header/shop-header.component';
@@ -20,32 +20,34 @@ import { OrderConfirmModalComponent } from './order-confirm-modal/order-confirm-
 import { getTotalProductsElements } from '../utils/utilsFunctions';
 
 @Component({
-  selector: 'app-shop',
-  standalone: true,
-  imports: [ShopHeaderComponent, ShopSelectorInputComponent, ShopCategoryListComponent, ShopProductListComponent, ShopCartComponent, OrderConfirmModalComponent],
-  templateUrl: './shop.component.html',
-  providers: [
-    {
-      provide: 'StoreService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new StoreLocalService(inject(LocaldataserviceService));
-        } else {
-          return new StoreService(inject(HttpClient));
+    selector: 'app-shop',
+    imports: [ShopHeaderComponent, ShopSelectorInputComponent, ShopCategoryListComponent, ShopProductListComponent, ShopCartComponent, OrderConfirmModalComponent],
+    templateUrl: './shop.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'StoreService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new StoreLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new StoreService(inject(HttpClient));
+                }
+            }
+        },
+        {
+            provide: 'ProductService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new ProductLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new ProductService(inject(HttpClient));
+                }
+            }
         }
-      }
-    },
-    {
-      provide: 'ProductService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new ProductLocalService(inject(LocaldataserviceService));
-        } else {
-          return new ProductService(inject(HttpClient));
-        }
-      }
-    }
-  ],
+    ]
 })
 export class ShopComponent {
   products?: ProductDTO[];

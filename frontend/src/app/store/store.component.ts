@@ -1,7 +1,7 @@
-import { Component, Inject, inject, } from '@angular/core';
+import { Component, Inject, inject, ChangeDetectionStrategy } from '@angular/core';
 import { StoreService } from './store-service/store.service';
 import { StoreDTO } from '../dto/StoreDTO';
-import { NgFor } from '@angular/common';
+
 import { StoreItemComponent } from './store-item/store-item.component';
 import { NavigationPathService } from '../navigation-path/navigation-path.service';
 import { ButtonProps } from '../utils/utilsFunctions';
@@ -16,22 +16,23 @@ import { DisplayNotFoundComponent } from '../shared/display-not-found/display-no
 import { SpinnerComponent } from '../svg/spinner/spinner.component';
 
 @Component({
-  selector: 'app-store',
-  standalone: true,
-  imports: [NgFor, StoreItemComponent, CreateItemButtonComponent, DisplayNotFoundComponent, SpinnerComponent],
-  templateUrl: './store.component.html',
-  providers: [
-    {
-      provide: 'ApiService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new StoreLocalService(inject(LocaldataserviceService));
-        } else {
-          return new StoreService(inject(HttpClient));
+    selector: 'app-store',
+    imports: [StoreItemComponent, CreateItemButtonComponent, DisplayNotFoundComponent, SpinnerComponent],
+    templateUrl: './store.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'ApiService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new StoreLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new StoreService(inject(HttpClient));
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 })
 export class StoreComponent {
   title: string = "List of stores";

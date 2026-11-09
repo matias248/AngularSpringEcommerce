@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, Inject, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, inject, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CancelButtonComponent } from '../../shared/cancel-button/cancel-button.component';
 import { DeleteButtonComponent } from '../../shared/delete-button/delete-button.component';
 import { InputNumberFormComponent } from '../../shared/input-number-form/input-number-form.component';
 import { InputStringFormComponent } from '../../shared/input-string-form/input-string-form.component';
-import { InputSwitchFormComponent } from '../../shared/input-switch-form/input-switch-form.component';
 import { InputUrlImageFormComponent } from '../../shared/input-url-image-form/input-url-image-form.component';
 import { ValidateButtonComponent } from '../../shared/validate-button/validate-button.component';
 import { Router } from '@angular/router';
@@ -25,23 +24,24 @@ import { DisplayNotFoundComponent } from '../../shared/display-not-found/display
 import { SpinnerComponent } from '../../svg/spinner/spinner.component';
 
 @Component({
-  selector: 'app-store-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, InputNumberFormComponent, FormDirective,
-    InputStringFormComponent, InputSwitchFormComponent, ValidateButtonComponent, CancelButtonComponent, DeleteButtonComponent, InputUrlImageFormComponent, DisplayNotFoundComponent, SpinnerComponent],
-  templateUrl: './store-form.component.html',
-  providers: [
-    {
-      provide: 'ApiStoreService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new StoreLocalService(inject(LocaldataserviceService));
-        } else {
-          return new StoreService(inject(HttpClient));
+    selector: 'app-store-form',
+    imports: [ReactiveFormsModule, InputNumberFormComponent, FormDirective,
+        InputStringFormComponent, ValidateButtonComponent, CancelButtonComponent, DeleteButtonComponent, InputUrlImageFormComponent, DisplayNotFoundComponent, SpinnerComponent],
+    templateUrl: './store-form.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'ApiStoreService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new StoreLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new StoreService(inject(HttpClient));
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 })
 export class StoreFormComponent {
 
@@ -50,7 +50,7 @@ export class StoreFormComponent {
   title: string = '';
   isLoading: boolean = true;
 
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef, private router: Router, @Inject('ApiStoreService') private storeService: ApiStoreService, private navigationPathService: NavigationPathService) { }
+  constructor(private router: Router, @Inject('ApiStoreService') private storeService: ApiStoreService, private navigationPathService: NavigationPathService) { }
 
   loadStore(): void {
     let id = this.storeId ? +this.storeId : NaN;
@@ -132,9 +132,7 @@ export class StoreFormComponent {
       });
   }
 
-  ngAfterViewChecked(): void {
-    this.changeDetectorRef.detectChanges();
-  }
+
 
   ngOnInit() {
     this.title = this.storeId !== undefined ? "Edit the store" : "Create a new store";

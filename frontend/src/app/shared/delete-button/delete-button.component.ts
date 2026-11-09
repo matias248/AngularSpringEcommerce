@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonProps } from '../../utils/utilsFunctions';
 
 @Component({
-  selector: 'app-delete-button',
-  standalone: true,
-  imports: [],
-  templateUrl: './delete-button.component.html',
+    selector: 'app-delete-button',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './delete-button.component.html'
 })
 export class DeleteButtonComponent {
 

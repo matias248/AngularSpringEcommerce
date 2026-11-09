@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-location-icon',
-  standalone: true,
-  imports: [],
-  templateUrl: './location-icon.component.html'
+    selector: 'app-location-icon',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './location-icon.component.html'
 })
 export class LocationIconComponent {
 

@@ -1,14 +1,14 @@
-import { Component, ElementRef, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-order-confirm-modal',
-  standalone: true,
   imports: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './order-confirm-modal.component.html'
 })
 export class OrderConfirmModalComponent {
 
-  @ViewChild('containerModal') containerModal!:ElementRef;
+  @ViewChild('containerModal') containerModal!: ElementRef;
 
   constructor(private elementRef: ElementRef) { }
 
@@ -18,8 +18,13 @@ export class OrderConfirmModalComponent {
   }
 
   @HostListener('document:click', ['$event.target'])
-  public onClick(targetElement: HTMLElement) {
+  public onClick(targetElement: EventTarget | null): void {
+    if (!(targetElement instanceof HTMLElement)) {
+      return;
+    }
+
     const clickedInside = this.containerModal.nativeElement.contains(targetElement);
+
     if (!clickedInside) {
       this.onClickCrossButtonEvent.emit(false);
     }

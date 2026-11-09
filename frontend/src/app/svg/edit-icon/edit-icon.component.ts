@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-edit-icon',
-  standalone: true,
-  imports: [],
-  templateUrl: './edit-icon.component.html',
-  styleUrl: './edit-icon.component.css'
+    selector: 'app-edit-icon',
+    imports: [],
+    templateUrl: './edit-icon.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './edit-icon.component.css'
 })
 export class EditIconComponent {
 

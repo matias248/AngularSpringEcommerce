@@ -1,7 +1,6 @@
-import { Component, Inject, inject, Input } from '@angular/core';
+import { Component, Inject, inject, Input, ChangeDetectionStrategy } from '@angular/core';
 import { StoreDTO, storesKeysToNotDisplayInDetails } from '../../dto/StoreDTO';
 import { StoreService } from '../store-service/store.service';
-import { TypeofPipe } from '../../pipe/typeof.pipe';
 import { RouterLink } from '@angular/router';
 import { CapitalizeAndFormatPipe } from '../../pipe/capitalize-and-format.pipe';
 import { NavigationPathService } from '../../navigation-path/navigation-path.service';
@@ -14,22 +13,23 @@ import { DisplayNotFoundComponent } from '../../shared/display-not-found/display
 import { SpinnerComponent } from '../../svg/spinner/spinner.component';
 
 @Component({
-  selector: 'app-store-view',
-  standalone: true,
-  imports: [TypeofPipe, RouterLink, CapitalizeAndFormatPipe, DisplayNotFoundComponent, SpinnerComponent],
-  templateUrl: './store-view.component.html',
-  providers: [
-    {
-      provide: 'ApiService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new StoreLocalService(inject(LocaldataserviceService));
-        } else {
-          return new StoreService(inject(HttpClient));
+    selector: 'app-store-view',
+    imports: [ RouterLink, CapitalizeAndFormatPipe, DisplayNotFoundComponent, SpinnerComponent],
+    templateUrl: './store-view.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'ApiService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new StoreLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new StoreService(inject(HttpClient));
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 })
 export class StoreViewComponent {
   title: string = "Details of the store";

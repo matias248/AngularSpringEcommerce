@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
 
 @Component({
-  selector: 'app-navigation-page-inputs',
-  standalone: true,
-  imports: [FormsModule, OnlyNumbersDirective],
-  templateUrl: './navigation-page-inputs.component.html'
+    selector: 'app-navigation-page-inputs',
+    imports: [FormsModule, OnlyNumbersDirective],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './navigation-page-inputs.component.html'
 })
 export class NavigationPageInputsComponent {
   @Input() currentPage?: number = 1;

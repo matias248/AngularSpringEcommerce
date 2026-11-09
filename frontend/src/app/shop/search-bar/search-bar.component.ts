@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-bar',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './search-bar.component.html',
+    selector: 'app-search-bar',
+    imports: [ReactiveFormsModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './search-bar.component.html'
 })
 export class SearchBarComponent implements OnInit {
 

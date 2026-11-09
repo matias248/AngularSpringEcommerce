@@ -1,4 +1,4 @@
-import { Component, inject, Inject, Input } from '@angular/core';
+import { Component, inject, Inject, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ProductDTO, productKeysToNotDisplayInDetails, ProductWithStore } from '../../dto/ProductDTO';
 import { RouterLink } from '@angular/router';
 import { CapitalizeAndFormatPipe } from '../../pipe/capitalize-and-format.pipe';
@@ -13,22 +13,23 @@ import { SpinnerComponent } from '../../svg/spinner/spinner.component';
 import { DisplayNotFoundComponent } from '../../shared/display-not-found/display-not-found.component';
 
 @Component({
-  selector: 'app-product-view',
-  standalone: true,
-  imports: [RouterLink, CapitalizeAndFormatPipe, SpinnerComponent, DisplayNotFoundComponent],
-  templateUrl: './product-view.component.html',
-  providers: [
-    {
-      provide: 'ApiProductService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new ProductLocalService(inject(LocaldataserviceService));
-        } else {
-          return new ProductService(inject(HttpClient));
+    selector: 'app-product-view',
+    imports: [RouterLink, CapitalizeAndFormatPipe, SpinnerComponent, DisplayNotFoundComponent],
+    templateUrl: './product-view.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'ApiProductService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new ProductLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new ProductService(inject(HttpClient));
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 })
 export class ProductViewComponent {
   title: string = "Details of the product";

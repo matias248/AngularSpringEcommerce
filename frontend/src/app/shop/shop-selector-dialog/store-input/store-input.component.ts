@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { StoreDTO } from '../../../dto/StoreDTO';
 import { LocationIconComponent } from '../../../svg/location-icon/location-icon.component';
 
 @Component({
-  selector: 'app-store-input',
-  standalone: true,
-  imports: [LocationIconComponent],
-  templateUrl: './store-input.component.html',
+    selector: 'app-store-input',
+    imports: [LocationIconComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './store-input.component.html'
 })
 export class StoreInputComponent {
 

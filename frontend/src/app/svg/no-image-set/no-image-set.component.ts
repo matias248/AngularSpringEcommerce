@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-no-image-set',
-  standalone: true,
-  imports: [],
-  templateUrl: './no-image-set.component.html',
+    selector: 'app-no-image-set',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './no-image-set.component.html'
 })
 export class NoImageSetComponent {
 

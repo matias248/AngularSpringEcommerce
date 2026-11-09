@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CartItemDTO } from '../../dto/CartItem';
 import { MinusPlusInputComponent } from '../minus-plus-input/minus-plus-input.component';
 import { NoImageSetComponent } from '../../svg/no-image-set/no-image-set.component';
 
 @Component({
-  selector: 'app-shop-cart-input-item',
-  standalone: true,
-  imports: [MinusPlusInputComponent, NoImageSetComponent],
-  templateUrl: './shop-cart-input-item.component.html'
+    selector: 'app-shop-cart-input-item',
+    imports: [MinusPlusInputComponent, NoImageSetComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './shop-cart-input-item.component.html'
 })
 export class ShopCartInputItemComponent {
 

@@ -1,6 +1,6 @@
-import { Component, Inject, inject, Input } from '@angular/core';
+import { Component, Inject, inject, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ProductService } from './product-service/product.service';
-import { NgFor, NgIf } from '@angular/common';
+
 import { ProductItemComponent } from './product-item/product-item.component';
 import { NavigationPathService } from '../navigation-path/navigation-path.service';
 import { ProductListDTOwithStoreDTO } from '../dto/ProductDTO';
@@ -16,22 +16,23 @@ import { SpinnerComponent } from '../svg/spinner/spinner.component';
 import { DisplayNotFoundComponent } from '../shared/display-not-found/display-not-found.component';
 
 @Component({
-  selector: 'app-product',
-  standalone: true,
-  imports: [NgFor, ProductItemComponent, NgIf, CreateItemButtonComponent, SpinnerComponent, DisplayNotFoundComponent],
-  templateUrl: './product.component.html',
-  providers: [
-    {
-      provide: 'ApiProductService',
-      useFactory: () => {
-        if (environment.environmentName == 'localdata') {
-          return new ProductLocalService(inject(LocaldataserviceService));
-        } else {
-          return new ProductService(inject(HttpClient));
+    selector: 'app-product',
+    imports: [ProductItemComponent, CreateItemButtonComponent, SpinnerComponent, DisplayNotFoundComponent],
+    templateUrl: './product.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'ApiProductService',
+            useFactory: () => {
+                if (environment.environmentName == 'localdata') {
+                    return new ProductLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new ProductService(inject(HttpClient));
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 })
 export class ProductComponent {
   title: string = "List of products";

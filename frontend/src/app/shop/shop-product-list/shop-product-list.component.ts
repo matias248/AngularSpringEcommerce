@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ProductDTO } from '../../dto/ProductDTO';
 import { SpinnerComponent } from '../../svg/spinner/spinner.component';
 import { ShopProductImageGalleryComponent } from '../shop-product-image-gallery/shop-product-image-gallery.component';
@@ -7,10 +7,10 @@ import { getQuantityOfProductInCartShop } from '../../utils/utilsFunctions';
 import { NavigationPageInputsComponent } from '../navigation-page-inputs/navigation-page-inputs.component';
 
 @Component({
-  selector: 'app-shop-product-list',
-  standalone: true,
-  imports: [SpinnerComponent, ShopProductImageGalleryComponent, NavigationPageInputsComponent],
-  templateUrl: './shop-product-list.component.html'
+    selector: 'app-shop-product-list',
+    imports: [SpinnerComponent, ShopProductImageGalleryComponent, NavigationPageInputsComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './shop-product-list.component.html'
 })
 export class ShopProductListComponent {
 

@@ -1,27 +1,26 @@
-import { Component, ElementRef, EventEmitter, Inject, Input, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, Output, PLATFORM_ID, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { StoreDTO } from '../../dto/StoreDTO';
 import { ShopIconComponent } from '../../svg/shop-icon/shop-icon.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { ShopSelectorDialogComponent } from '../shop-selector-dialog/shop-selector-dialog.component';
 import { ShopSelectorInputComponent } from '../shop-selector-input/shop-selector-input.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-shop-header',
-  standalone: true,
-  imports: [ShopIconComponent, SearchBarComponent, ShopSelectorDialogComponent, ShopSelectorInputComponent],
-  templateUrl: './shop-header.component.html',
-  animations: [
-    trigger('openClose', [
-      state('closed', style({
-        opacity: '0'
-      })),
-      state('open', style({
-        opacity: '1',
-      })),
-      transition('closed <=> open', [animate('1s ease-in-out')])
-    ])
-  ]
+    selector: 'app-shop-header',
+    imports: [ShopIconComponent, SearchBarComponent, ShopSelectorInputComponent],
+    templateUrl: './shop-header.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    animations: [
+        trigger('openClose', [
+            state('closed', style({
+                opacity: '0'
+            })),
+            state('open', style({
+                opacity: '1',
+            })),
+            transition('closed <=> open', [animate('1s ease-in-out')])
+        ])
+    ]
 })
 export class ShopHeaderComponent {
 

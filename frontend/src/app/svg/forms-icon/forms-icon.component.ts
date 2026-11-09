@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-forms-icon',
-  standalone: true,
-  imports: [],
-  templateUrl: './forms-icon.component.html',
+    selector: 'app-forms-icon',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './forms-icon.component.html'
 })
 export class FormsIconComponent {
 

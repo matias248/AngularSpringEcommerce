@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, inject, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputNumberFormComponent } from '../../shared/input-number-form/input-number-form.component';
 import { ButtonProps, InputFormProps, InputSwitchFormProps, InputTextFormProps } from '../../utils/utilsFunctions';
@@ -23,23 +23,24 @@ import { DisplayNotFoundComponent } from '../../shared/display-not-found/display
 import { SpinnerComponent } from '../../svg/spinner/spinner.component';
 
 @Component({
-  selector: 'app-product-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, InputNumberFormComponent, FormDirective,
-    InputStringFormComponent, InputSwitchFormComponent, ValidateButtonComponent, CancelButtonComponent, DeleteButtonComponent, InputUrlImageFormComponent, DisplayNotFoundComponent, SpinnerComponent],
-  templateUrl: './product-form.component.html',
-  providers: [
-    {
-      provide: 'ApiProductService',
-      useFactory: () => {
-        if (environment.environmentName === 'localdata') {
-          return new ProductLocalService(inject(LocaldataserviceService));
-        } else {
-          return new ProductService(inject(HttpClient));
+    selector: 'app-product-form',
+    imports: [ReactiveFormsModule, InputNumberFormComponent, FormDirective,
+        InputStringFormComponent, InputSwitchFormComponent, ValidateButtonComponent, CancelButtonComponent, DeleteButtonComponent, InputUrlImageFormComponent, DisplayNotFoundComponent, SpinnerComponent],
+    templateUrl: './product-form.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    providers: [
+        {
+            provide: 'ApiProductService',
+            useFactory: () => {
+                if (environment.environmentName === 'localdata') {
+                    return new ProductLocalService(inject(LocaldataserviceService));
+                }
+                else {
+                    return new ProductService(inject(HttpClient));
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 })
 export class ProductFormComponent {
 
@@ -47,7 +48,7 @@ export class ProductFormComponent {
   @Input() productId: string | undefined = undefined;
   formCorrect?: boolean = false;
   isLoading: boolean = true;
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef, private router: Router, @Inject('ApiProductService') private productService: ApiProductService, private navigationPathService: NavigationPathService) { }
+  constructor(private router: Router, @Inject('ApiProductService') private productService: ApiProductService, private navigationPathService: NavigationPathService) { }
 
   loadProduct(idProduct: number, idStore: number): void {
     if (!isNaN(idProduct) && !isNaN(idStore)) {
@@ -124,10 +125,6 @@ export class ProductFormComponent {
           console.error('Error when creating a product:', error)
         },
       });
-  }
-
-  ngAfterViewChecked(): void {
-    this.changeDetectorRef.detectChanges();
   }
 
   ngOnInit() {

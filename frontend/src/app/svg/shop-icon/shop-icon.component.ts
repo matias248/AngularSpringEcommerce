@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-shop-icon',
-  standalone: true,
-  imports: [],
-  templateUrl: './shop-icon.component.html',
+    selector: 'app-shop-icon',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './shop-icon.component.html'
 })
 export class ShopIconComponent {
 

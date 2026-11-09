@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { AppNames } from '../constants';
 import { getCurrentApp } from '../utils/utilsFunctions';
 import { Router, RouterLink } from '@angular/router';
@@ -7,10 +7,10 @@ import { NavigationPathService } from './navigation-path.service';
 
 
 @Component({
-  selector: 'app-navigation-path',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './navigation-path.component.html',
+    selector: 'app-navigation-path',
+    imports: [RouterLink],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './navigation-path.component.html'
 })
 export class NavigationPathComponent {
   route?: AppNames;

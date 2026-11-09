@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ShopCategoryItemComponent } from '../shop-category-item/shop-category-item.component';
 import { getInitialCategoryMap } from '../../utils/utilsFunctions';
 
 @Component({
-  selector: 'app-shop-category-list',
-  standalone: true,
-  imports: [ShopCategoryItemComponent],
-  templateUrl: './shop-category-list.component.html'
+    selector: 'app-shop-category-list',
+    imports: [ShopCategoryItemComponent],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    templateUrl: './shop-category-list.component.html'
 })
 export class ShopCategoryListComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { StoreDTO } from '../../dto/StoreDTO';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ButtonConfirmComponent } from './button-confirm/button-confirm.component';
@@ -7,9 +7,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 
 @Component({
   selector: 'app-shop-selector-dialog',
-  standalone: true,
   imports: [SearchBarComponent, ButtonConfirmComponent, StoreInputListComponent],
   templateUrl: './shop-selector-dialog.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   animations: [
     trigger('openClose', [
       state('closed', style({
@@ -28,7 +28,7 @@ export class ShopSelectorDialogComponent implements OnInit {
   @Input() selectedStore: StoreDTO | undefined;
   @Input() shopTextFilter: string = "";
   @Input() handlerShopTextFilter!: (text: string) => void;
-  @Input() isShopDialogOpen:boolean=false;
+  @Input() isShopDialogOpen: boolean = false;
 
   temporalStore: StoreDTO | undefined;
   @Output() closeDialogEvent = new EventEmitter<void>();
@@ -42,8 +42,13 @@ export class ShopSelectorDialogComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event.target'])
-  public onClick(targetElement: HTMLElement) {
+  public onClick(targetElement: EventTarget | null): void {
+    if (!(targetElement instanceof HTMLElement)) {
+      return;
+    }
+
     const clickedInside = this.elementRef.nativeElement.contains(targetElement);
+
     if (!clickedInside) {
       this.closeDialogEvent.emit();
     }
